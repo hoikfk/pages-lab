@@ -131,10 +131,10 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 </style></head><body class="g-ru">
 <div class="wrap"><header>
 <h1>Мои инструменты Claude Code</h1>
-<div class="sub">Скиллы, плагины, моды и коннекторы. Снято с диска 2026-10-08. Описания на русском, оригинал — по кнопке.</div>
+<div class="sub">Скиллы, плагины, моды и коннекторы. Снято с диска 2026-10-08, дополнено 2026-10-13. Описания на русском, оригинал — по кнопке.</div>
 <div class="stats">
-<div class="st"><b>182</b><span>всего</span></div>
-<div class="st"><b>153</b><span>скиллов</span></div>
+<div class="st"><b>184</b><span>всего</span></div>
+<div class="st"><b>155</b><span>скиллов</span></div>
 <div class="st"><b>18</b><span>команд</span></div>
 <div class="st"><b>10</b><span>коннекторов</span></div>
 <div class="st"><b>1</b><span>мод</span></div>
@@ -142,7 +142,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <div class="st"><b>16</b><span>дубликатов</span></div>
 <div class="st"><b>41</b><span>не заработает</span></div>
 </div>
-<div class="note"><b>Из 182 инструментов следы запуска есть у 7.</b> Счётчик собран по твоей истории промптов и транскриптам сессий — это 9 файлов и около 3 200 строк, то есть выборка пока небольшая и со временем станет точнее. Но порядок величин честный: подавляющее большинство установленного ни разу не вызывалось. Фильтр <b>«ни разу»</b> показывает кандидатов на удаление, <b>«дубликаты»</b> — что стоит по несколько раз, <b>«не заработает»</b> — что молча не запустится без ключа, коннектора или настройки.</div>
+<div class="note"><b>Из 184 инструментов следы запуска есть у 7.</b> Счётчик собран по твоей истории промптов и транскриптам сессий — это 9 файлов и около 3 200 строк, то есть выборка пока небольшая и со временем станет точнее. Но порядок величин честный: подавляющее большинство установленного ни разу не вызывалось. Фильтр <b>«ни разу»</b> показывает кандидатов на удаление, <b>«дубликаты»</b> — что стоит по несколько раз, <b>«не заработает»</b> — что молча не запустится без ключа, коннектора или настройки.</div>
 <div class="note"><b>Откуда инструмент — там он и работает.</b> Из аккаунта claude.ai — везде: терминал, приложение, веб, телефон. Локальное (плагины, личные скиллы, моды) — только там, где лежит папка <code>~/.claude</code>: терминал и приложение. Веб и телефон диск не видят.</div>
 <div class="legend">
 <div class="lg"><b>⌨ терминал</b><br>Claude Code в терминале</div>
@@ -160,19 +160,19 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <button class="ch" id="reset">сбросить фильтры</button>
 </div>
 <div class="chips" id="chips">
-<span class="ch act" data-f="all">все<span class="n">182</span></span>
+<span class="ch act" data-f="all">все<span class="n">184</span></span>
 <span class="ch" data-f="origin:local">локальный плагин<span class="n">62</span></span>
-<span class="ch" data-f="origin:personal">личный скилл<span class="n">15</span></span>
+<span class="ch" data-f="origin:personal">личный скилл<span class="n">17</span></span>
 <span class="ch" data-f="origin:account">из аккаунта<span class="n">104</span></span>
 <span class="ch" data-f="origin:mod">мод<span class="n">1</span></span>
 <span class="ch" data-f="kind:connector">коннекторы<span class="n">10</span></span>
 <span class="ch" data-f="star:1">⭐ стартовый набор<span class="n">13</span></span>
 <span class="ch" data-f="used:1">запускалось<span class="n">7</span></span>
-<span class="ch" data-f="used:0">ни разу<span class="n">175</span></span>
+<span class="ch" data-f="used:0">ни разу<span class="n">177</span></span>
 <span class="ch" data-f="dup:1">дубликаты<span class="n">16</span></span>
 <span class="ch" data-f="req:1">не заработает<span class="n">41</span></span>
-<span class="ch" data-f="surf:terminal">⌨ терминал<span class="n">182</span></span>
-<span class="ch" data-f="surf:desktop">▣ приложение<span class="n">182</span></span>
+<span class="ch" data-f="surf:terminal">⌨ терминал<span class="n">184</span></span>
+<span class="ch" data-f="surf:desktop">▣ приложение<span class="n">184</span></span>
 <span class="ch" data-f="surf:web">◉ веб<span class="n">104</span></span>
 <span class="ch" data-f="surf:phone">▢ телефон<span class="n">104</span></span>
 </div><div class="found" id="found"></div>
@@ -24447,6 +24447,208 @@ no generic placeholder names, no broken image links.)
   • Being too vague in atmosphere descriptions
   • Ignoring the anti-pattern list — these are what make the output premium
   • Defaulting to generic &quot;safe&quot; designs instead of enforcing the curated aesthetic</pre></details><div class="meta path">C:\Users\klaus\.agents\skills\stitch-design-taste</div></article>
+<article class="e" id="e-personal-web-design-guidelines" data-s="web-design-guidelines  /web-design-guidelines финальная проверка ui-кода по 100+ правилам интерфейсных гайдлайнов vercel. от vercel. запускай перед релизом — ловит невидимые мелочи, отличающие отполированный продукт от демки. review ui code for web interface guidelines compliance. use when asked to review my ui, check accessibility, audit design, review ux, or check my site against best practices. дизайн ревью доступность" data-origin="personal" data-kind="skill" data-plugin="personal" data-tags="дизайн|ревью|доступность" data-used="0" data-dup="0" data-req="0" data-star="0" data-surf="terminal desktop"><div class="top"><b class="nm">web-design-guidelines</b><span class="kd">скилл</span><button class="plg-badge" data-plugin="personal">personal</button><span class="unused">ни разу</span><span class="org o-pers">личный скилл</span><button class="lang" title="переключить язык этой карточки">EN ⇄ RU</button></div><p class="sum ru">Финальная проверка UI-кода по 100+ правилам интерфейсных гайдлайнов Vercel.</p><p class="sum en">Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices".</p><div class="run"><button class="cmd" data-copy="/web-design-guidelines" title="скопировать">/web-design-guidelines</button><span class="sfs"><span class="sf on">⌨ терминал</span><span class="sf on">▣ приложение</span><span class="sf off">◉ веб</span><span class="sf off">▢ телефон</span></span></div><div class="tags"><button class="tg" data-tag="дизайн">дизайн</button><button class="tg" data-tag="ревью">ревью</button><button class="tg" data-tag="доступность">доступность</button></div><div class="tip"><b>Совет:</b> От Vercel. Запускай перед релизом — ловит невидимые мелочи, отличающие отполированный продукт от демки.</div><details class="full"><summary>подробнее <span class="kb">1 КБ оригинала</span></summary><div class="dig ru"><b class="dh">Что делает:</b> тянет свежие Web Interface Guidelines от Vercel и проверяет указанные файлы по всем правилам — доступность, фокус-состояния, формы, анимация с prefers-reduced-motion, типографика, тёмная тема, тач-поведение, форматирование под локаль.
+<b class="dh">Когда брать:</b> перед релизом, либо когда просишь «проверь UI», «проверь доступность», «аудит дизайна».
+<b class="dh">На выходе:</b> список нарушений в формате file:line.</div><div class="ru orig-hint">Полный оригинал на английском — кнопка <b>EN ⇄ RU</b> вверху карточки.</div><pre class="md en"><span class="hr"></span>
+name: web-design-guidelines
+description: Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices".
+metadata:
+  author: vercel
+  version: "1.0.0"
+  argument-hint: &lt;file-or-pattern&gt;
+<span class="hr"></span>
+
+<b class="mh">Web Interface Guidelines</b>
+
+Review files for compliance with Web Interface Guidelines.
+
+<b class="mh">How It Works</b>
+
+1. Fetch the latest guidelines from the source URL below
+2. Read the specified files (or prompt user for files/pattern)
+3. Check against all rules in the fetched guidelines
+4. Output findings in the terse `file:line` format
+
+<b class="mh">Guidelines Source</b>
+
+Fetch fresh guidelines before each review:
+
+```
+https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
+```
+
+Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions.
+
+<b class="mh">Usage</b>
+
+When a user provides a file or pattern argument:
+1. Fetch guidelines from the source URL above
+2. Read the specified files
+3. Apply all rules from the fetched guidelines
+4. Output findings using the format specified in the guidelines
+
+If no files specified, ask the user which files to review.</pre></details><div class="meta path">C:\Users\klaus\.agents\skills\web-design-guidelines</div></article>
+<article class="e" id="e-personal-multilingual-cyrillic-ui" data-s="multilingual-cyrillic-ui  /multilingual-cyrillic-ui кириллица в ui: шрифты с полным ru/uk-покрытием, расширение текста, плюрализация, «ёлочки», переключатель языков. кастомный скилл макса. срабатывает сам при упоминании русского, української или многоязычного интерфейса. лежит прямо в ~/.claude/skills. use when designing or reviewing ui, landing pages, or app screens that must work in russian, ukrainian and english. covers cyrillic typography, font selection with full ru/uk glyph coverage, text expansion in layouts, locale-aware formatting, and language switcher patterns. i18n кириллица дизайн" data-origin="personal" data-kind="skill" data-plugin="personal" data-tags="i18n|кириллица|дизайн" data-used="0" data-dup="0" data-req="0" data-star="0" data-surf="terminal desktop"><div class="top"><b class="nm">multilingual-cyrillic-ui</b><span class="kd">скилл</span><button class="plg-badge" data-plugin="personal">personal</button><span class="unused">ни разу</span><span class="org o-pers">личный скилл</span><button class="lang" title="переключить язык этой карточки">EN ⇄ RU</button></div><p class="sum ru">Кириллица в UI: шрифты с полным ru/uk-покрытием, расширение текста, плюрализация, «ёлочки», переключатель языков.</p><p class="sum en">Use when designing or reviewing UI, landing pages, or app screens that must work in Russian, Ukrainian and English. Covers Cyrillic typography, font selection with full ru/uk glyph coverage, text expansion in layouts, locale-aware formatting, and language switcher patterns.</p><div class="run"><button class="cmd" data-copy="/multilingual-cyrillic-ui" title="скопировать">/multilingual-cyrillic-ui</button><span class="sfs"><span class="sf on">⌨ терминал</span><span class="sf on">▣ приложение</span><span class="sf off">◉ веб</span><span class="sf off">▢ телефон</span></span></div><div class="tags"><button class="tg" data-tag="i18n">i18n</button><button class="tg" data-tag="кириллица">кириллица</button><button class="tg" data-tag="дизайн">дизайн</button></div><div class="tip"><b>Совет:</b> Кастомный скилл Макса. Срабатывает сам при упоминании русского, української или многоязычного интерфейса. Лежит прямо в ~/.claude/skills.</div><details class="full"><summary>подробнее <span class="kb">8 КБ оригинала</span></summary><div class="dig ru"><b class="dh">Что делает:</b> держит кириллицу в порядке: шрифты с глифами і ї є ґ ё без tofu, запас на расширение текста (ru до +60%, uk до +70%), ICU-плюрализация на 4 формы, «ёлочки» вместо прямых кавычек, переключатель языков без флагов, uk вместо ua, форматы дат/чисел/валют через Intl.
+<b class="dh">Когда брать:</b> интерфейс выходит больше чем на одном из ru / uk / en.
+<b class="dh">На выходе:</b> правила-ограничения и чеклист ревью перед сдачей.</div><div class="ru orig-hint">Полный оригинал на английском — кнопка <b>EN ⇄ RU</b> вверху карточки.</div><pre class="md en"><span class="hr"></span>
+name: multilingual-cyrillic-ui
+description: Use when designing or reviewing UI, landing pages, or app screens that must work in Russian, Ukrainian and English. Covers Cyrillic typography, font selection with full ru/uk glyph coverage, text expansion in layouts, locale-aware formatting, and language switcher patterns. Trigger on requests mentioning русский, українська, Cyrillic, i18n, multilingual UI, локализация, or any UI that will ship in more than one of these languages.
+<span class="hr"></span>
+
+<b class="mh">Multilingual UI: Russian / Ukrainian / English</b>
+
+Apply these rules whenever the interface will exist in more than one of ru / uk / en.
+They are constraints, not suggestions. Violating them produces broken-looking localized UI.
+
+<b class="mh">1. Font selection — hard requirement</b>
+
+Before choosing any typeface, verify it covers **Cyrillic Extended** including the
+Ukrainian-specific glyphs: `і І ї Ї є Є ґ Ґ` and the Russian `ё Ё ъ ы э`.
+
+A font without these renders tofu boxes or silently falls back to a different family
+mid-sentence. This is the single most common failure in AI-generated multilingual UI.
+
+**Safe, well-drawn choices (verified Cyrillic, variable, on Google Fonts):**
+
+| Role | Font | Notes |
+|---|---|---|
+| UI / body | Inter | Excellent Cyrillic, boring but safe — avoid if the brief asks for character |
+| UI / body | Manrope | Geometric, good Cyrillic, less overused than Inter |
+| UI / body | Onest | Designed with Cyrillic as a first-class citizen |
+| UI / body | Golos Text | Russian-first, designed for interfaces |
+| Display | Unbounded | Strong display face, full Cyrillic |
+| Display | Rubik | Wide weight range, solid Cyrillic |
+| Serif | PT Serif / PT Sans | Designed for Cyrillic from the start |
+| Serif | Literata, Lora | Full Cyrillic, good for editorial |
+| Mono | JetBrains Mono, IBM Plex Mono | Full Cyrillic |
+
+**Known traps — do NOT use for ru/uk text:**
+Poppins, Montserrat (partial/weak Cyrillic), Playfair Display, Satoshi, Cabinet Grotesk,
+Clash Display, General Sans, most Fontshare faces, DM Sans (older cuts), Space Grotesk.
+Many have no Cyrillic at all. If the design calls for one of these, pair it:
+Latin display face for the logo/wordmark only, Cyrillic-safe face for all UI text.
+
+When loading from Google Fonts, always request the subset explicitly:
+
+```html
+&lt;link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&amp;display=swap&amp;subset=cyrillic,cyrillic-ext,latin,latin-ext" rel="stylesheet"&gt;
+```
+
+```css
+/* self-hosted: separate @font-face per unicode-range so Latin pages don't download Cyrillic */
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/onest-cyrillic.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  font-display: swap;
+}
+```
+
+<b class="mh">2. Text expansion — layout must absorb it</b>
+
+Relative to English, expect:
+
+| Language | Typical change | Worst case (short UI labels) |
+|---|---|---|
+| Russian | +10–20% | +60% on buttons ("Save" → "Сохранить") |
+| Ukrainian | +15–25% | +70% ("Next" → "Продовжити") |
+
+Rules:
+- **Never** fix a width on a button, tab, nav item, badge, or chip. Use padding + `min-width`.
+- **Never** fit a label to a single line by assuming the English length. Allow 2 lines or
+  `text-wrap: balance` on buttons, and verify with the longest locale.
+- Nav bars with 5+ items break first. Design the ru/uk version first, then English will fit.
+- Cards in a grid must use `align-items: stretch` + equal-height, not fixed heights.
+- Use `min-content` / `fit-content` and CSS Grid `auto-fit` rather than hardcoded columns.
+- Hyphenation helps Russian and Ukrainian meaningfully: `hyphens: auto; lang="ru"`.
+  Always set the `lang` attribute — hyphenation and font fallback both depend on it.
+- Avoid `text-overflow: ellipsis` as a layout strategy. It hides the problem on the
+  languages the user actually reads.
+
+<b class="mh">3. Typography details for Cyrillic</b>
+
+- Cyrillic lowercase has a **larger x-height and more vertical stems** than Latin.
+  Dense text looks heavier. Increase `line-height` by ~0.05–0.1 vs the Latin value
+  (body: 1.6–1.7 rather than 1.5).
+- **Do not letterspace lowercase Cyrillic.** It is a typographic error in Russian and
+  Ukrainian convention. Letterspacing uppercase (`ЗАГОЛОВОК`) is acceptable.
+- Cyrillic has **no true italic tradition in UI** — many fonts ship a sloped roman that
+  looks wrong. Prefer weight or color for emphasis over italic.
+- All-caps Cyrillic headlines lose readability faster than Latin (fewer distinctive
+  ascenders/descenders). Use sparingly, and only at display sizes.
+- Quotation marks: Russian and Ukrainian use **«ёлочки»** for outer quotes and
+  „лапки" for nested. Not `"straight"` and not English “curly”.
+- Dash: Russian/Ukrainian use the em dash — with spaces around it — in running text.
+- Non-breaking space before em dash and after short prepositions (`в`, `на`, `з`, `у`)
+  prevents orphans: `на&amp;nbsp;сайті`.
+
+<b class="mh">4. Locale-aware formatting</b>
+
+Never hardcode. Use `Intl` with the active locale.
+
+| | en-US | ru-RU | uk-UA |
+|---|---|---|---|
+| Date | Oct 12, 2026 | 12 окт. 2026 г. | 12 жовт. 2026 р. |
+| Decimal | 1,234.56 | 1 234,56 | 1 234,56 |
+| Currency | $1,234.56 | 1 234,56 ₽ | 1 234,56 ₴ |
+| Week starts | Sunday | Monday | Monday |
+| 24h clock | no | yes | yes |
+
+```js
+new Intl.NumberFormat(locale, { style: "currency", currency }).format(v);
+new Intl.DateTimeFormat(locale, { dateStyle: "long" }).format(d);
+```
+
+**Pluralization:** English has 2 forms, Russian and Ukrainian have **4 ICU categories**
+(one / few / many / other): `1 товар`, `2 товари`, `5 товарів`, `1,5 товара`.
+Never build plurals by string concatenation or a simple `n === 1` check.
+Use ICU MessageFormat (`next-intl`, `i18next` with ICU, `react-intl`, `vue-i18n`).
+
+```
+{count, plural, one {# товар} few {# товари} many {# товарів} other {# товару}}
+```
+
+**Gendered strings:** past-tense verbs inflect by gender in both ru and uk
+("Вы добавили" vs "Вы добавила"). Prefer impersonal phrasing in UI copy
+("Добавлено в корзину") over sentences that need the user's gender.
+
+<b class="mh">5. Language switcher</b>
+
+- Label languages in **their own language**: `English / Русский / Українська`.
+  Never `EN / RU / UA` alone — ambiguous and unfriendly.
+- **Never use flags** for languages. 🇷🇺 for Russian excludes other Russian-speaking
+  users; 🇺🇦 maps to a country, not a language. This is both a UX and a political problem.
+- Correct ISO codes: `uk` for Ukrainian (not `ua`), `ru` for Russian, `en` for English.
+  `ua` is a country code and is a common, visible bug.
+- URL strategy: path prefix (`/uk/`, `/ru/`) is the most SEO-safe. Add
+  `&lt;link rel="alternate" hreflang="uk" ...&gt;` for every locale plus `x-default`.
+- Persist the choice (cookie/localStorage) **and** respect `Accept-Language` on first
+  visit — but never auto-redirect without an escape hatch.
+
+<b class="mh">6. Copywriting register</b>
+
+- Russian/Ukrainian UI copy is conventionally **impersonal or formal-you (вы / ви)**.
+  Do not mirror the casual English second-person voice directly.
+- Avoid machine-literal translation of marketing English. "Get started" → "Начать",
+  not "Получить начатый". If generating copy, keep sentences short and verb-first.
+- Ukrainian is not Russian with swapped letters. If asked for Ukrainian, produce
+  Ukrainian — watch for the Ukrainian vocative, `в/у` alternation, and `-ння` nouns.
+- Flag to the user when copy needs a native review rather than silently shipping it.
+
+<b class="mh">7. Review checklist</b>
+
+Before declaring a multilingual UI done, verify:
+
+- [ ] Every font in the stack renders `і ї є ґ ё ъ ы` without fallback
+- [ ] Longest locale (usually uk) tested on the narrowest breakpoint (320–360px)
+- [ ] No fixed-width interactive element
+- [ ] `lang` attribute set and updated on language switch
+- [ ] Plurals use ICU with 4 categories for ru/uk
+- [ ] Dates, numbers, currency go through `Intl`
+- [ ] Switcher uses endonyms, no flags, `uk` not `ua`
+- [ ] `hreflang` + `x-default` present
+- [ ] Quotes are «ёлочки» in ru/uk text
+- [ ] No letterspaced lowercase Cyrillic</pre></details><div class="meta path">C:\Users\klaus\.claude\skills\multilingual-cyrillic-ui</div></article>
 </div></div>
 <div class="wrap"><footer>
 Собрано из <code>~/.claude</code> и <code>~/.agents/skills</code>. Короткие описания и конспекты — перевод и комментарии от Claude; 
