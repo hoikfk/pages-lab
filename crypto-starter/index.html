@@ -1,0 +1,447 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude: крипта и поиск — старт-набор</title><style>
+
+:root{--bg:#0e0e10;--pan:#17171a;--card:#1b1b1f;--bd:#2c2c32;--tx:#e6e6e8;--dim:#9a9aa2;--mut:#6e6e77;
+--grn:#5fd49a;--blu:#6fb5f0;--yel:#e3c05c;--vio:#b08ef0;--red:#f08a7a}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.6 -apple-system,"Segoe UI",system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+header{padding:30px 0 16px;border-bottom:1px solid var(--bd)}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--dim);font-size:13px}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.st{background:var(--pan);border:1px solid var(--bd);border-radius:8px;padding:8px 12px}
+.st b{display:block;font-size:19px;line-height:1.2}.st span{font-size:11px;color:var(--dim)}
+.note{background:var(--pan);border:1px solid var(--bd);border-left:3px solid var(--blu);
+border-radius:7px;padding:11px 14px;margin:16px 0;font-size:13px;color:#c6c6cc}
+.note b{color:var(--tx)}
+.note.warn{border-left-color:var(--yel)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:12px}
+.lg{background:var(--pan);border:1px solid var(--bd);border-radius:7px;padding:9px 11px;font-size:12px;color:var(--dim)}
+.lg b{color:var(--tx);font-size:12.5px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(14,14,16,.96);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--bd);padding:11px 0;margin-bottom:8px}
+.bar .wrap{padding-bottom:0}
+input[type=search]{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:8px;
+padding:9px 13px;color:var(--tx);font-size:14px;font-family:inherit}
+input[type=search]:focus{outline:none;border-color:#45454e}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:9px;font-size:12px;color:var(--mut)}
+.seg{display:inline-flex;border:1px solid var(--bd);border-radius:7px;overflow:hidden}
+.seg button{background:var(--card);border:0;color:var(--dim);font:12px inherit;padding:5px 11px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--bd)}
+.seg button.on{background:#15352a;color:var(--grn)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ch{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:4px 11px;
+font-size:12px;color:var(--dim);cursor:pointer;user-select:none}
+.ch:hover{border-color:#45454e;color:var(--tx)}
+.ch.act{background:#15352a;border-color:#2f6b4e;color:var(--grn)}
+.ch .n{opacity:.6;margin-left:4px}
+.found{font-size:12px;color:var(--mut);margin-top:8px}
+h2.grp{font-size:15px;margin:26px 0 2px;padding-top:14px;border-top:1px solid var(--bd);display:flex;
+align-items:baseline;gap:9px;flex-wrap:wrap}
+h2.grp .cnt{font-size:11px;color:var(--mut);font-weight:400}
+.e{background:var(--card);border:1px solid var(--bd);border-radius:9px;padding:13px 15px;margin:8px 0}
+.top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.nm{font-size:14.5px}
+.kd{font-size:10.5px;color:var(--dim);background:#232329;border-radius:4px;padding:2px 6px}
+.org{font-size:10.5px;border-radius:4px;padding:2px 7px;margin-left:auto}
+.o-acct{background:#172b42;color:var(--blu)}.o-conn{background:#15352a;color:var(--grn)}
+.o-ext{background:#2d2440;color:var(--vio)}
+.sum{margin:8px 0 0;color:#c8c8d0;font-size:13px}
+.run{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cmd{font:12px ui-monospace,monospace;background:#101014;border:1px solid #33333b;color:#dfe6ff;
+border-radius:6px;padding:4px 9px;cursor:pointer}
+.cmd:hover{border-color:var(--blu);color:#fff}.cmd.ok{border-color:var(--grn);color:var(--grn)}
+.nocmd{font-size:11.5px;color:var(--mut);font-style:italic}
+.sfs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.sf{font-size:12px;border-radius:4px;padding:2px 8px;white-space:nowrap}
+.sf.on{background:#15352a;color:var(--grn)}
+.sf.off{background:#1e1e22;color:#55555d;text-decoration:line-through}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.tg{font-size:10.5px;background:#232329;color:var(--dim);border:1px solid transparent;
+border-radius:999px;padding:2px 9px;cursor:pointer;font-family:inherit}
+.tg:hover{border-color:var(--blu);color:var(--blu)}
+.tip{margin-top:9px;font-size:12.5px;color:#cfc7a8;background:#221f16;border-left:2px solid var(--yel);
+border-radius:0 6px 6px 0;padding:7px 11px}
+.tip b{color:var(--yel)}
+.lang{font:10px ui-monospace,monospace;background:transparent;border:1px solid var(--bd);
+color:var(--mut);border-radius:4px;padding:2px 6px;cursor:pointer}
+.lang:hover{border-color:var(--blu);color:var(--blu)}
+.meta{font:11px ui-monospace,monospace;color:var(--mut);margin-top:7px;word-break:break-all}
+.meta a{color:#8fc4f5;text-decoration:none}.meta a:hover{text-decoration:underline}
+details.full{margin-top:10px;border-top:1px solid var(--bd);padding-top:8px}
+details.full summary{cursor:pointer;font-size:12px;color:var(--blu);list-style:none}
+details.full summary::-webkit-details-marker{display:none}
+details.full summary:before{content:"▸ ";color:var(--mut)}
+details.full[open] summary:before{content:"▾ "}
+.dig{background:#121216;border:1px solid #26262c;border-radius:7px;padding:11px 13px;margin-top:9px;
+font-size:13px;line-height:1.7;color:#cdcdd4;white-space:pre-wrap}
+.dig .dh{color:var(--grn);font-weight:600}
+.dig code{background:#1c1c22;border-radius:3px;padding:0 4px;color:#dfe6ff}
+/* язык / langue */
+.ru,.fr{display:none}
+body.g-ru .ru{display:block}
+body.g-fr .fr{display:block}
+article.f-ru .ru{display:block}article.f-ru .fr{display:none}
+article.f-fr .fr{display:block}article.f-fr .ru{display:none}
+body.g-ru .ch .ru,body.g-fr .ch .fr,
+body.g-ru .seg .ru,body.g-fr .seg .fr,
+body.g-ru .st .ru,body.g-fr .st .fr,
+body.g-ru .kd .ru,body.g-fr .kd .fr,
+body.g-ru .org .ru,body.g-fr .org .fr{display:inline}
+.hide{display:none!important}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size:12px;color:var(--mut)}
+@media(max-width:640px){.org{margin-left:0}.sfs{margin-left:0}h1{font-size:20px}}
+
+</style></head><body class="g-ru">
+<div class="wrap"><header>
+<h1><span class="ru">🪙 Claude для крипты и поиска — старт</span><span class="fr">🪙 Claude pour la crypto et la recherche — kit de départ</span></h1>
+<div class="sub"><span class="ru">Небольшой набор для новичка, который работает только с телефона. Интересы: поиск в интернете и криптовалюта. Переключатель языка — справа: <b>русский / français</b>.</span><span class="fr">Un petit kit pour un débutant qui n'utilise que son téléphone. Centres d'intérêt : recherche web et cryptomonnaie. Le sélecteur de langue est à droite : <b>русский / français</b>.</span></div>
+<div class="stats">
+<div class="st"><b>14</b><span><span class="ru">инструментов</span><span class="fr">outils</span></span></div>
+<div class="st"><b>12</b><span><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span></span></div>
+<div class="st"><b>7</b><span><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span></span></div>
+<div class="st"><b>3</b><span><span class="ru">🔍 поиск</span><span class="fr">🔍 recherche</span></span></div>
+<div class="st"><b>2</b><span><span class="ru">⚙️ для компа</span><span class="fr">⚙️ pour PC</span></span></div>
+</div>
+<div class="note warn"><b><span class="ru">Главное про телефон.</span><span class="fr">L'essentiel pour le mobile.</span></b> <span class="ru">На телефоне работают только инструменты <b>из аккаунта claude.ai</b> и <b>коннекторы</b>. Локальные скиллы из GitHub (дизайн-скиллы, brightdata и т.п.) нужен компьютер — они на телефоне не запускаются. Эта страница собрана так, чтобы почти всё работало прямо с телефона.</span><span class="fr">Sur mobile, seuls les outils <b>du compte claude.ai</b> et les <b>connecteurs</b> fonctionnent. Les skills locaux de GitHub (skills de design, brightdata, etc.) demandent un ordinateur — ils ne se lancent pas sur téléphone. Cette page est pensée pour que presque tout marche directement depuis le mobile.</span></div>
+<div class="legend">
+<div class="lg"><b>📱</b> <span class="ru">работает на телефоне</span><span class="fr">fonctionne sur mobile</span></div>
+<div class="lg"><b>💻</b> <span class="ru">нужен компьютер</span><span class="fr">ordinateur requis</span></div>
+<div class="lg"><b>RU ⇄ FR</b> <span class="ru">перевод одной карточки</span><span class="fr">traduire une seule carte</span></div>
+</div>
+</header></div>
+
+<div class="bar"><div class="wrap">
+<input type="search" id="q" placeholder="Поиск по названию, описанию или тегу… / Rechercher…" autocomplete="off">
+<div class="ctl">
+<span><span class="ru">Группировать:</span><span class="fr">Grouper :</span></span>
+<span class="seg" id="grp"><button data-g="sec" class="on"><span class="ru">по разделу</span><span class="fr">par thème</span></button><button data-g="surf"><span class="ru">по площадке</span><span class="fr">par appareil</span></button></span>
+<span><span class="ru">Язык:</span><span class="fr">Langue :</span></span>
+<span class="seg" id="lng"><button data-l="ru" class="on">русский</button><button data-l="fr">français</button></span>
+<button class="ch" id="reset"><span class="ru">сбросить</span><span class="fr">réinitialiser</span></button>
+</div>
+<div class="chips" id="chips">
+<span class="ch act" data-f="all"><span class="ru">всё</span><span class="fr">tout</span><span class="n">14</span></span>
+<span class="ch" data-f="surf:phone"><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span><span class="n">12</span></span>
+<span class="ch" data-f="sec:search"><span class="ru">🔍 поиск</span><span class="fr">🔍 recherche</span><span class="n">3</span></span>
+<span class="ch" data-f="sec:crypto"><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span><span class="n">7</span></span>
+<span class="ch" data-f="sec:base"><span class="ru">🧰 база</span><span class="fr">🧰 bases</span><span class="n">2</span></span>
+<span class="ch" data-f="sec:later"><span class="ru">⚙️ нужен компьютер</span><span class="fr">⚙️ ordinateur</span><span class="n">2</span></span>
+</div><div class="found" id="found"></div>
+</div></div>
+
+<div class="wrap"><div id="list">
+
+<article class="e" data-sec="search" data-surf="phone desktop" data-s="веб-поиск встроенный recherche web intégrée поиск новости найди cherche nouvelles">
+<div class="top"><b class="nm">Веб-поиск · Recherche web</b><span class="kd"><span class="ru">встроено</span><span class="fr">intégré</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Claude сам ищет в интернете и отвечает со ссылками — ничего включать не нужно.</p>
+<p class="sum fr">Claude cherche sur le web et répond avec des liens — rien à activer.</p>
+<div class="run"><span class="nocmd"><span class="ru">без команды · просто спроси</span><span class="fr">sans commande · demande simplement</span></span><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="поиск">поиск</button><button class="tg" data-tag="новости">новости</button></div>
+<div class="tip ru"><b>Совет:</b> Просто напиши «найди…», «что сейчас с…», «последние новости по биткоину». Самое простое и полезное для старта.</div>
+<div class="tip fr"><b>Astuce :</b> Écris simplement « cherche… », « quoi de neuf sur… », « dernières infos sur le bitcoin ». Le plus simple et le plus utile pour commencer.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> ищет свежую информацию в интернете и даёт ответ с источниками.
+<b class="dh">Когда брать:</b> любой вопрос «что сейчас / последние новости / найди».
+<b class="dh">На выходе:</b> ответ со ссылками, прямо в чате на телефоне.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> cherche des infos récentes sur le web et répond avec les sources.
+<b class="dh">Quand l'utiliser :</b> toute question « quoi de neuf / dernières infos / cherche ».
+<b class="dh">Résultat :</b> une réponse sourcée, directement dans le chat sur mobile.</div>
+</details></article>
+
+<article class="e" data-sec="search" data-surf="phone desktop" data-s="deep-research глубокое исследование recherche approfondie ресёрч крипта sources источники монета">
+<div class="top"><b class="nm">deep-research</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Глубокое исследование по многим источникам с одним связным выводом.</p>
+<p class="sum fr">Recherche approfondie sur de nombreuses sources, avec une synthèse claire.</p>
+<div class="run"><button class="cmd" data-copy="/deep-research" title="скопировать / copier">/deep-research</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="ресёрч">ресёрч</button><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="поиск">поиск</button></div>
+<div class="tip ru"><b>Совет:</b> Для разбора монеты или сектора: много источников → один отчёт. Лучший выбор, когда нужен серьёзный разбор, а не быстрый ответ.</div>
+<div class="tip fr"><b>Astuce :</b> Pour analyser une crypto ou un secteur : beaucoup de sources → un seul rapport. Idéal quand il faut une vraie analyse, pas une réponse rapide.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> обходит десятки источников и собирает связный отчёт.
+<b class="dh">Когда брать:</b> нужен глубокий разбор монеты, проекта или темы.
+<b class="dh">На выходе:</b> структурированный отчёт со ссылками.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> parcourt des dizaines de sources et produit un rapport cohérent.
+<b class="dh">Quand l'utiliser :</b> pour une analyse en profondeur d'une crypto, d'un projet ou d'un sujet.
+<b class="dh">Résultat :</b> un rapport structuré et sourcé.</div>
+</details></article>
+
+<article class="e" data-sec="search" data-surf="phone desktop" data-s="morning утренняя сводка briefing matin новости digest дайджест">
+<div class="top"><b class="nm">morning</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Утренняя сводка: новости и события, собранные в один короткий дайджест.</p>
+<p class="sum fr">Briefing du matin : actus et événements réunis en un court digest.</p>
+<div class="run"><button class="cmd" data-copy="/morning" title="скопировать / copier">/morning</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="сводка">сводка</button><button class="tg" data-tag="новости">новости</button></div>
+<div class="tip ru"><b>Совет:</b> Можно нацелить на крипто-новости и рынок — удобно читать с телефона за утренним кофе.</div>
+<div class="tip fr"><b>Astuce :</b> Peut être orienté actus crypto et marché — pratique à lire sur mobile avec le café du matin.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> собирает короткую сводку новостей и событий.
+<b class="dh">Когда брать:</b> хочешь каждое утро быть в курсе по рынку.
+<b class="dh">На выходе:</b> компактный дайджест.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> rassemble un bref résumé des actus et événements.
+<b class="dh">Quand l'utiliser :</b> pour suivre le marché chaque matin.
+<b class="dh">Résultat :</b> un digest compact.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="coingecko коннектор connecteur цены prix btc eth sol тренды tendances курс live">
+<div class="top"><b class="nm">CoinGecko</b><span class="kd"><span class="ru">коннектор</span><span class="fr">connecteur</span></span><span class="org o-conn"><span class="ru">из интернета</span><span class="fr">du web</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Живые цены и данные крипторынка прямо в чате: курсы, тренды, лидеры роста и падения.</p>
+<p class="sum fr">Prix et données crypto en direct dans le chat : cours, tendances, hausses et baisses.</p>
+<div class="run"><span class="nocmd"><span class="ru">коннектор · включи в настройках claude.ai</span><span class="fr">connecteur · active dans les réglages claude.ai</span></span><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="цены">цены</button><button class="tg" data-tag="коннектор">коннектор</button></div>
+<div class="tip ru"><b>Совет:</b> Официальный коннектор CoinGecko. Включается в настройках коннекторов claude.ai — и тогда работает прямо на телефоне. Самое полезное дополнение для крипты.</div>
+<div class="tip fr"><b>Astuce :</b> Connecteur officiel CoinGecko. S'active dans les réglages de connecteurs claude.ai — et fonctionne alors directement sur mobile. Le meilleur ajout pour la crypto.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> берёт актуальные цены BTC/ETH/SOL и тысяч монет, сравнивает активы, показывает трендовые.
+<b class="dh">Когда брать:</b> «какая цена…», «сравни…», «что сейчас в тренде».
+<b class="dh">Как подключить:</b> claude.ai → Настройки → Коннекторы → добавить CoinGecko.
+<b class="dh">На выходе:</b> свежие цифры и графики.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> récupère les prix de BTC/ETH/SOL et de milliers de cryptos, compare les actifs, montre les tendances.
+<b class="dh">Quand l'utiliser :</b> « quel prix… », « compare… », « quoi en tendance ».
+<b class="dh">Installation :</b> claude.ai → Réglages → Connecteurs → ajouter CoinGecko.
+<b class="dh">Résultat :</b> des chiffres et graphiques à jour.</div>
+<div class="meta">📎 <a href="https://docs.coingecko.com/ai-integration/docs-mcp.md" target="_blank" rel="noopener">docs.coingecko.com/ai-integration</a></div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="build-dashboard дашборд портфель portefeuille tableau de bord сигналы html данные">
+<div class="top"><b class="nm">build-dashboard</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Портфель и история сигналов одним интерактивным HTML, который можно открыть и переслать.</p>
+<p class="sum fr">Portefeuille et historique en un seul HTML interactif, à ouvrir et à partager.</p>
+<div class="run"><button class="cmd" data-copy="/data:build-dashboard" title="скопировать / copier">/data:build-dashboard</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="дашборд">дашборд</button><button class="tg" data-tag="данные">данные</button></div>
+<div class="tip ru"><b>Совет:</b> Дай таблицу сделок или цен — получишь дашборд, который открывается прямо в телефоне.</div>
+<div class="tip fr"><b>Astuce :</b> Donne un tableau de trades ou de prix — tu obtiens un dashboard qui s'ouvre directement sur le téléphone.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> превращает данные в наглядный интерактивный HTML-дашборд.
+<b class="dh">Когда брать:</b> хочешь видеть портфель и динамику одним экраном.
+<b class="dh">На выходе:</b> HTML-файл, который открывается и пересылается.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> transforme des données en un dashboard HTML interactif.
+<b class="dh">Quand l'utiliser :</b> pour voir le portefeuille et son évolution d'un coup d'œil.
+<b class="dh">Résultat :</b> un fichier HTML à ouvrir et à partager.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="statistical-analysis статистика сигнал шум signal bruit statistique гипотеза">
+<div class="top"><b class="nm">statistical-analysis</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Отличить настоящий сигнал от случайного колебания рынка.</p>
+<p class="sum fr">Distinguer un vrai signal d'une simple fluctuation du marché.</p>
+<div class="run"><button class="cmd" data-copy="/data:statistical-analysis" title="скопировать / copier">/data:statistical-analysis</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="статистика">статистика</button></div>
+<div class="tip ru"><b>Совет:</b> Ровно про крипту: проверить, закономерность это или просто шум. Защищает от решений на эмоциях.</div>
+<div class="tip fr"><b>Astuce :</b> Pile pour la crypto : vérifier si c'est une tendance ou juste du bruit. Protège des décisions prises sous le coup de l'émotion.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> проверяет, значим ли сигнал статистически.
+<b class="dh">Когда брать:</b> «это тренд или случайность?».
+<b class="dh">На выходе:</b> вывод с цифрами, а не на глаз.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> vérifie si un signal est statistiquement significatif.
+<b class="dh">Quand l'utiliser :</b> « est-ce une tendance ou du hasard ? ».
+<b class="dh">Résultat :</b> une conclusion chiffrée, pas à l'œil.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="analyze данные вопросы données questions csv анализ сделки цены">
+<div class="top"><b class="nm">analyze</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Задавай вопросы к своим данным — CSV сделок, цен или истории портфеля.</p>
+<p class="sum fr">Pose des questions à tes données — CSV de trades, de prix ou d'historique.</p>
+<div class="run"><button class="cmd" data-copy="/data:analyze" title="скопировать / copier">/data:analyze</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="данные">данные</button><button class="tg" data-tag="крипта">крипта</button></div>
+<div class="tip ru"><b>Совет:</b> Загрузи файл и спрашивай человеческим языком: «где я терял чаще всего?», «какая монета дала больше всего».</div>
+<div class="tip fr"><b>Astuce :</b> Charge un fichier et pose tes questions en langage normal : « où ai-je perdu le plus ? », « quelle crypto a le plus rapporté ».</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> отвечает на вопросы по твоему датасету.
+<b class="dh">Когда брать:</b> есть таблица, хочется выводов без формул.
+<b class="dh">На выходе:</b> ответы и, при желании, графики.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> répond aux questions sur ton jeu de données.
+<b class="dh">Quand l'utiliser :</b> tu as un tableau et veux des conclusions sans formules.
+<b class="dh">Résultat :</b> des réponses et, au besoin, des graphiques.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="create-viz графики charts graphiques визуализация цены динамика">
+<div class="top"><b class="nm">create-viz</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Графики по данным: цены, доли портфеля, динамика во времени.</p>
+<p class="sum fr">Graphiques à partir des données : prix, répartition du portefeuille, évolution.</p>
+<div class="run"><button class="cmd" data-copy="/data:create-viz" title="скопировать / copier">/data:create-viz</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="графики">графики</button><button class="tg" data-tag="данные">данные</button></div>
+<div class="tip ru"><b>Совет:</b> Хорошая пара к analyze: сначала разобрать данные, потом показать их картинкой.</div>
+<div class="tip fr"><b>Astuce :</b> Bon duo avec analyze : d'abord comprendre les données, puis les montrer en image.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> строит понятные графики из твоих чисел.
+<b class="dh">Когда брать:</b> нужно показать динамику наглядно.
+<b class="dh">На выходе:</b> графики, которые видно на телефоне.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> crée des graphiques clairs à partir de tes chiffres.
+<b class="dh">Quand l'utiliser :</b> pour montrer une évolution visuellement.
+<b class="dh">Résultat :</b> des graphiques lisibles sur mobile.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="xlsx таблицы excel tableur portefeuille портфель расчёты calculs">
+<div class="top"><b class="nm">xlsx</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Таблицы Excel: учёт портфеля, расчёты, выгрузка истории.</p>
+<p class="sum fr">Tableurs Excel : suivi du portefeuille, calculs, export d'historique.</p>
+<div class="run"><button class="cmd" data-copy="/xlsx" title="скопировать / copier">/xlsx</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="таблицы">таблицы</button><button class="tg" data-tag="крипта">крипта</button></div>
+<div class="tip ru"><b>Совет:</b> Удобно вести портфель и считать прибыль/убыток. Файл открывается и на телефоне.</div>
+<div class="tip fr"><b>Astuce :</b> Pratique pour suivre le portefeuille et calculer les gains/pertes. Le fichier s'ouvre aussi sur mobile.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> создаёт и правит таблицы Excel.
+<b class="dh">Когда брать:</b> нужен учёт и расчёты в привычном формате.
+<b class="dh">На выходе:</b> файл .xlsx.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> crée et modifie des tableurs Excel.
+<b class="dh">Quand l'utiliser :</b> pour un suivi et des calculs dans un format familier.
+<b class="dh">Résultat :</b> un fichier .xlsx.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-s="pdf вайтпейпер whitepaper документы documents отчёт rapport читать">
+<div class="top"><b class="nm">pdf</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Любые операции с PDF: прочитать и разобрать вайтпейпер или отчёт.</p>
+<p class="sum fr">Toutes les opérations PDF : lire et résumer un whitepaper ou un rapport.</p>
+<div class="run"><button class="cmd" data-copy="/pdf" title="скопировать / copier">/pdf</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="pdf">pdf</button><button class="tg" data-tag="документы">документы</button></div>
+<div class="tip ru"><b>Совет:</b> Кинь вайтпейпер монеты — попроси коротко пересказать суть и риски.</div>
+<div class="tip fr"><b>Astuce :</b> Envoie le whitepaper d'une crypto — demande un résumé de l'essentiel et des risques.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> читает, режет, собирает и разбирает PDF.
+<b class="dh">Когда брать:</b> есть длинный документ, нужен быстрый смысл.
+<b class="dh">На выходе:</b> краткий разбор или новый PDF.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> lit, découpe, assemble et analyse des PDF.
+<b class="dh">Quand l'utiliser :</b> un long document dont tu veux l'essentiel vite.
+<b class="dh">Résultat :</b> un résumé ou un nouveau PDF.</div>
+</details></article>
+
+<article class="e" data-sec="base" data-surf="phone desktop" data-s="docs документы documents заметки notes ресёрч">
+<div class="top"><b class="nm">docs</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Редактируемые документы — вести заметки и ресёрч прямо в Claude.</p>
+<p class="sum fr">Documents éditables — prendre des notes et garder ses recherches dans Claude.</p>
+<div class="run"><button class="cmd" data-copy="/docs" title="скопировать / copier">/docs</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="заметки">заметки</button><button class="tg" data-tag="документы">документы</button></div>
+<div class="tip ru"><b>Совет:</b> Складывай сюда выводы по монетам — живой документ, к которому легко вернуться.</div>
+<div class="tip fr"><b>Astuce :</b> Range ici tes conclusions sur les cryptos — un document vivant, facile à retrouver.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> создаёт и редактирует документы в Claude.
+<b class="dh">Когда брать:</b> нужны заметки, которые не потеряются.
+<b class="dh">На выходе:</b> редактируемый документ.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> crée et modifie des documents dans Claude.
+<b class="dh">Quand l'utiliser :</b> pour des notes qui ne se perdent pas.
+<b class="dh">Résultat :</b> un document éditable.</div>
+</details></article>
+
+<article class="e" data-sec="base" data-surf="phone desktop" data-s="explore-data профилирование датасет jeu de données aperçu первый шаг">
+<div class="top"><b class="nm">explore-data</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Профилирование датасета — первый шаг перед любым анализом.</p>
+<p class="sum fr">Profilage d'un jeu de données — la première étape avant toute analyse.</p>
+<div class="run"><button class="cmd" data-copy="/data:explore-data" title="скопировать / copier">/data:explore-data</button><span class="sfs"><span class="sf on" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="данные">данные</button></div>
+<div class="tip ru"><b>Совет:</b> Если скинул большой файл и не знаешь, с чего начать — сначала этот скилл.</div>
+<div class="tip fr"><b>Astuce :</b> Si tu as un gros fichier et ne sais pas par où commencer — ce skill d'abord.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> показывает, что вообще за данные: колонки, пропуски, диапазоны.
+<b class="dh">Когда брать:</b> перед любым анализом незнакомого файла.
+<b class="dh">На выходе:</b> короткий профиль датасета.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> montre ce que contiennent les données : colonnes, valeurs manquantes, plages.
+<b class="dh">Quand l'utiliser :</b> avant toute analyse d'un fichier inconnu.
+<b class="dh">Résultat :</b> un profil rapide du jeu de données.</div>
+</details></article>
+
+<article class="e" data-sec="later" data-surf="desktop" data-s="crypto-report отчёт rapport токеномика tokenomics on-chain риски сторонний externe">
+<div class="top"><b class="nm">crypto-report</b><span class="kd"><span class="ru">сторонний скилл</span><span class="fr">skill tiers</span></span><span class="org o-ext"><span class="ru">из интернета</span><span class="fr">du web</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Структурные крипто-отчёты: токеномика, он-чейн метрики, анализ протокола, риски.</p>
+<p class="sum fr">Rapports crypto structurés : tokenomics, métriques on-chain, analyse du protocole, risques.</p>
+<div class="run"><span class="nocmd"><span class="ru">сторонний скилл · нужен компьютер</span><span class="fr">skill tiers · ordinateur requis</span></span><span class="sfs"><span class="sf off" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="отчёт">отчёт</button><button class="tg" data-tag="сторонний">сторонний</button></div>
+<div class="tip ru"><b>Совет:</b> Для будущего, когда появится компьютер. Ставится в Claude Code, на телефоне не работает. Перед установкой загляни в репозиторий.</div>
+<div class="tip fr"><b>Astuce :</b> Pour plus tard, quand il aura un ordinateur. S'installe dans Claude Code, ne marche pas sur mobile. Vérifie le dépôt avant d'installer.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> по названию монеты собирает структурный отчёт.
+<b class="dh">Почему не на телефоне:</b> это локальный скилл для Claude Code (компьютер).
+<b class="dh">На выходе:</b> отчёт с токеномикой и рисками.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> génère un rapport structuré à partir du nom d'une crypto.
+<b class="dh">Pourquoi pas sur mobile :</b> c'est un skill local pour Claude Code (ordinateur).
+<b class="dh">Résultat :</b> un rapport avec tokenomics et risques.</div>
+<div class="meta">📎 <a href="https://claudemarketplaces.com/skills/claude-office-skills/skills/crypto-report" target="_blank" rel="noopener">claudemarketplaces.com → crypto-report</a></div>
+</details></article>
+
+<article class="e" data-sec="later" data-surf="desktop" data-s="web3-research-mcp mcp токены tokens ресёрч recherche coingecko defillama сторонний">
+<div class="top"><b class="nm">web3-research-mcp</b><span class="kd"><span class="ru">MCP-сервер</span><span class="fr">serveur MCP</span></span><span class="org o-ext"><span class="ru">из интернета</span><span class="fr">du web</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Ресёрч токенов: веб-поиск и сбор данных из CoinGecko и DeFiLlama в один рабочий процесс.</p>
+<p class="sum fr">Recherche de tokens : recherche web et données CoinGecko/DeFiLlama en un seul flux.</p>
+<div class="run"><span class="nocmd"><span class="ru">MCP-сервер · нужен компьютер и настройка</span><span class="fr">serveur MCP · ordinateur et configuration requis</span></span><span class="sfs"><span class="sf off" title="телефон / mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="ресёрч">ресёрч</button><button class="tg" data-tag="mcp">mcp</button></div>
+<div class="tip ru"><b>Совет:</b> Мощный ресёрч токенов, но это MCP-сервер — нужен компьютер и настройка. На будущее, не для старта с телефона.</div>
+<div class="tip fr"><b>Astuce :</b> Recherche de tokens puissante, mais c'est un serveur MCP — ordinateur et configuration requis. Pour plus tard, pas pour débuter sur mobile.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> объединяет веб-поиск и крипто-источники в структурный ресёрч токена.
+<b class="dh">Почему не на телефоне:</b> MCP-сервер ставится и настраивается на компьютере.
+<b class="dh">На выходе:</b> разбор токена по источникам.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> combine recherche web et sources crypto en une analyse structurée de token.
+<b class="dh">Pourquoi pas sur mobile :</b> un serveur MCP s'installe et se configure sur ordinateur.
+<b class="dh">Résultat :</b> une analyse de token sourcée.</div>
+<div class="meta">📎 <a href="https://claudemarketplaces.com/mcp/aaronjmars/web3-research-mcp" target="_blank" rel="noopener">claudemarketplaces.com → web3-research-mcp</a></div>
+</details></article>
+
+</div></div>
+
+<div class="wrap"><footer>
+<span class="ru">Старт-набор для друга: только то, что реально работает с телефона (аккаунт claude.ai + коннекторы), плюс пара сильных штук «на будущее» для компьютера. Описания и переводы — от Claude. Звёзды и свежесть сторонних инструментов проверяй в их репозиториях.</span>
+<span class="fr">Kit de départ pour un ami : uniquement ce qui marche vraiment depuis le mobile (compte claude.ai + connecteurs), plus deux outils costauds « pour plus tard » sur ordinateur. Descriptions et traductions par Claude. Vérifie la fiabilité des outils tiers dans leurs dépôts.</span>
+</footer></div>
+
+<script>
+var q=document.getElementById('q'),chips=document.getElementById('chips'),found=document.getElementById('found'),
+ list=document.getElementById('list'),grpSeg=document.getElementById('grp'),lngSeg=document.getElementById('lng');
+var cards=[].slice.call(list.querySelectorAll('.e'));
+var SECN={search:{ru:'🔍 Поиск и ресёрч',fr:'🔍 Recherche web'},crypto:{ru:'🪙 Криптовалюта и данные',fr:'🪙 Crypto &amp; données'},base:{ru:'🧰 Полезная база',fr:'🧰 Les essentiels'},later:{ru:'⚙️ Пригодится позже — нужен компьютер',fr:'⚙️ Pour plus tard — ordinateur requis'}};
+var SURFN={phone:{ru:'📱 Работает на телефоне',fr:'📱 Fonctionne sur mobile'},desktop:{ru:'💻 Нужен компьютер',fr:'💻 Ordinateur requis'}};
+var ORDER={search:1,crypto:2,base:3,later:4,phone:1,desktop:2};
+var filt='all',groupBy='sec';
+cards.forEach(function(c){c._sec=c.getAttribute('data-sec');c._sf=(c.getAttribute('data-surf')||'').split(' ');c._s=(c.getAttribute('data-s')||'').toLowerCase();});
+function lang(){return document.body.classList.contains('g-fr')?'fr':'ru';}
+function pass(c){
+ var t=q.value.trim().toLowerCase();
+ if(t&&c._s.indexOf(t)<0)return false;
+ if(filt==='all')return true;
+ var p=filt.split(':'),k=p[0],v=p.slice(1).join(':');
+ if(k==='surf')return c._sf.indexOf(v)>=0;
+ if(k==='sec')return c._sec===v;
+ return true;
+}
+function render(){
+ var L=lang();
+ var vis=cards.filter(pass),groups={},order=[];
+ vis.forEach(function(c){var k=groupBy==='sec'?c._sec:(c._sf.indexOf('phone')>=0?'phone':'desktop');
+  if(!groups[k]){groups[k]=[];order.push(k)}groups[k].push(c)});
+ order.sort(function(a,b){return (ORDER[a]||9)-(ORDER[b]||9)});
+ var frag=document.createDocumentFragment();
+ order.forEach(function(k){
+  var map=groupBy==='sec'?SECN:SURFN;var title=map[k]?map[k][L]:k;
+  var h=document.createElement('h2');h.className='grp';
+  h.innerHTML='<span>'+title+'</span><span class="cnt">'+groups[k].length+'</span>';
+  frag.appendChild(h);
+  groups[k].forEach(function(c){frag.appendChild(c)});
+ });
+ list.innerHTML='';list.appendChild(frag);
+ found.textContent=(L==='fr'?'affichés : ':'показано: ')+vis.length+(L==='fr'?' sur ':' из ')+cards.length;
+}
+q.addEventListener('input',render);
+chips.addEventListener('click',function(e){var el=e.target.closest('.ch');if(!el||el.id==='reset')return;
+ filt=el.getAttribute('data-f');var cs=chips.querySelectorAll('.ch');
+ for(var i=0;i<cs.length;i++)cs[i].classList.toggle('act',cs[i]===el);render();});
+grpSeg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+ grpSeg.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ groupBy=b.getAttribute('data-g');render();});
+lngSeg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+ lngSeg.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ document.body.className=b.getAttribute('data-l')==='fr'?'g-fr':'g-ru';
+ cards.forEach(function(c){c.classList.remove('f-ru','f-fr')});render();});
+document.addEventListener('click',function(e){
+ var cm=e.target.closest('.cmd');
+ if(cm){var txt=cm.getAttribute('data-copy');var done=function(){var o=cm.textContent;cm.textContent=(lang()==='fr'?'copié':'скопировано');cm.classList.add('ok');setTimeout(function(){cm.textContent=o;cm.classList.remove('ok')},1100)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,done)}else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(err){}ta.remove();done()}return;}
+ var tg=e.target.closest('.tg');if(tg){q.value=tg.getAttribute('data-tag');filt='all';var cs=chips.querySelectorAll('.ch');for(var i=0;i<cs.length;i++)cs[i].classList.toggle('act',cs[i].getAttribute('data-f')==='all');render();window.scrollTo({top:0,behavior:'smooth'});return;}
+ var lg=e.target.closest('.lang');if(lg){var art=lg.closest('.e');
+  var cur=art.classList.contains('f-fr')?'fr':art.classList.contains('f-ru')?'ru':lang();
+  art.classList.remove('f-ru','f-fr');art.classList.add(cur==='ru'?'f-fr':'f-ru');return;}
+});
+document.getElementById('reset').addEventListener('click',function(){q.value='';filt='all';
+ var cs=chips.querySelectorAll('.ch');for(var i=0;i<cs.length;i++)cs[i].classList.toggle('act',cs[i].getAttribute('data-f')==='all');render();});
+render();
+</script>
+</body></html>
