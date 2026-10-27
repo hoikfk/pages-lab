@@ -133,10 +133,10 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <h1>Мои инструменты Claude Code</h1>
 <div class="sub">Скиллы, плагины, моды и коннекторы. Снято с диска 2026-10-08, дополнено 2026-10-13. Описания на русском, оригинал — по кнопке.</div>
 <div class="stats">
-<div class="st"><b>184</b><span>всего</span></div>
+<div class="st"><b>185</b><span>всего</span></div>
 <div class="st"><b>155</b><span>скиллов</span></div>
 <div class="st"><b>18</b><span>команд</span></div>
-<div class="st"><b>10</b><span>коннекторов</span></div>
+<div class="st"><b>11</b><span>коннекторов</span></div>
 <div class="st"><b>1</b><span>мод</span></div>
 <div class="st"><b>7</b><span>запускалось</span></div>
 <div class="st"><b>16</b><span>дубликатов</span></div>
@@ -160,19 +160,19 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <button class="ch" id="reset">сбросить фильтры</button>
 </div>
 <div class="chips" id="chips">
-<span class="ch act" data-f="all">все<span class="n">184</span></span>
-<span class="ch" data-f="origin:local">локальный плагин<span class="n">62</span></span>
+<span class="ch act" data-f="all">все<span class="n">185</span></span>
+<span class="ch" data-f="origin:local">локальный плагин<span class="n">63</span></span>
 <span class="ch" data-f="origin:personal">личный скилл<span class="n">17</span></span>
 <span class="ch" data-f="origin:account">из аккаунта<span class="n">104</span></span>
 <span class="ch" data-f="origin:mod">мод<span class="n">1</span></span>
-<span class="ch" data-f="kind:connector">коннекторы<span class="n">10</span></span>
+<span class="ch" data-f="kind:connector">коннекторы<span class="n">11</span></span>
 <span class="ch" data-f="star:1">⭐ стартовый набор<span class="n">13</span></span>
 <span class="ch" data-f="used:1">запускалось<span class="n">7</span></span>
 <span class="ch" data-f="used:0">ни разу<span class="n">177</span></span>
 <span class="ch" data-f="dup:1">дубликаты<span class="n">16</span></span>
 <span class="ch" data-f="req:1">не заработает<span class="n">41</span></span>
-<span class="ch" data-f="surf:terminal">⌨ терминал<span class="n">184</span></span>
-<span class="ch" data-f="surf:desktop">▣ приложение<span class="n">184</span></span>
+<span class="ch" data-f="surf:terminal">⌨ терминал<span class="n">185</span></span>
+<span class="ch" data-f="surf:desktop">▣ приложение<span class="n">185</span></span>
 <span class="ch" data-f="surf:web">◉ веб<span class="n">104</span></span>
 <span class="ch" data-f="surf:phone">▢ телефон<span class="n">104</span></span>
 </div><div class="found" id="found"></div>
@@ -12881,6 +12881,9 @@ with open(&quot;encrypted.pdf&quot;, &quot;wb&quot;) as output:
 <article class="e" id="e-account-plugin-engineering-slack" data-s="plugin:engineering:slack   коннектор к slack: каналы и сообщения. нужен только при командной работе. mcp-коннектор. требует авторизации в настройках claude.ai. коннектор общение" data-origin="account" data-kind="connector" data-plugin="account" data-tags="коннектор|общение" data-used="0" data-dup="0" data-req="1" data-star="0" data-surf="terminal desktop web phone"><div class="top"><b class="nm">plugin:engineering:slack</b><span class="kd">коннектор</span><button class="plg-badge" data-plugin="account">account</button><span class="warn">не заработает</span><span class="unused">ни разу</span><span class="org o-acct">из аккаунта</span><button class="lang" title="переключить язык этой карточки">EN ⇄ RU</button></div><p class="sum ru">Коннектор к Slack: каналы и сообщения.</p><p class="sum en">MCP-коннектор. Требует авторизации в настройках claude.ai.</p><div class="req no"><b>Не заработает без:</b> авторизация на claude.ai — Коннектор не авторизован. Изнутри Claude Code авторизацию запустить нельзя — только в настройках коннекторов.</div><div class="run"><span class="nocmd">команды нет</span><span class="sfs"><span class="sf on">⌨ терминал</span><span class="sf on">▣ приложение</span><span class="sf on">◉ веб</span><span class="sf on">▢ телефон</span></span></div><div class="tags"><button class="tg" data-tag="коннектор">коннектор</button><button class="tg" data-tag="общение">общение</button></div><div class="tip"><b>Совет:</b> Нужен только при командной работе.</div><details class="full"><summary>подробнее</summary><div class="dig ru"><b class="dh">Что делает:</b> читает и пишет в Slack.
 <b class="dh">Когда брать:</b> команда общается в Slack.
 <b class="dh">На выходе:</b> сообщения и чтение каналов.</div><div class="en meta">Оригинального текста нет — у этой записи только описание.</div></details><div class="meta path">~/.claude/mcp-needs-auth-cache.json</div></article>
+<article class="e" id="e-local-perplexity" data-s="perplexity  perplexity_search perplexity_ask perplexity_research perplexity_reason коннектор к perplexity: поиск в интернете, ресёрч и рассуждения с опорой на свежие веб-данные. локальный mcp-коннектор claude code на perplexity agent api, добавлен через claude mcp. заменил сломанный perplexity-ask. коннектор поиск ресёрч" data-origin="local" data-kind="connector" data-plugin="perplexity" data-tags="коннектор|поиск|ресёрч" data-used="0" data-dup="0" data-req="0" data-star="0" data-surf="terminal desktop"><div class="top"><b class="nm">perplexity</b><span class="kd">коннектор</span><button class="plg-badge" data-plugin="perplexity">perplexity</button><span class="unused">ни разу</span><span class="org o-local">локальный</span><button class="lang" title="переключить язык этой карточки">EN ⇄ RU</button></div><p class="sum ru">Коннектор к Perplexity: поиск в интернете, ресёрч и рассуждения с опорой на свежие веб-данные.</p><p class="sum en">Локальный MCP-коннектор Claude Code на Perplexity Agent API, добавлен через claude mcp.</p><div class="req ok"><b>Готово к работе:</b> ключ Perplexity (pplx-…) настроен, коннектор подключён в user scope — работает во всех проектах Claude Code.</div><div class="run"><span class="nocmd">команды нет · инструменты perplexity_search / ask / research / reason</span><span class="sfs"><span class="sf on">⌨ терминал</span><span class="sf on">▣ приложение</span><span class="sf off">◉ веб</span><span class="sf off">▢ телефон</span></span></div><div class="tags"><button class="tg" data-tag="коннектор">коннектор</button><button class="tg" data-tag="поиск">поиск</button><button class="tg" data-tag="ресёрч">ресёрч</button></div><div class="tip"><b>Совет:</b> Заменил сломанный perplexity-ask (старый Sonar API отключили). Теперь на официальном Perplexity Agent API — hosted MCP (https://api.perplexity.ai/mcp).</div><details class="full"><summary>подробнее</summary><div class="dig ru"><b class="dh">Что делает:</b> веб-поиск, вопросы с цитатами, глубокий ресёрч и пошаговые рассуждения с опорой на живые данные интернета.
+<b class="dh">Когда брать:</b> нужны свежие факты, новости или разбор темы со ссылками.
+<b class="dh">На выходе:</b> ответы с источниками.</div><div class="en meta">Оригинального текста нет — у этой записи только описание.</div></details><div class="meta path">~/.claude.json (user scope) · https://api.perplexity.ai/mcp</div></article>
 <article class="e" id="e-account-pptx" data-s="pptx  /pptx любая работа с презентациями .pptx и .potx. аккаунтная версия — доступна везде, включая телефон. use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both. документы офис" data-origin="account" data-kind="skill" data-plugin="account" data-tags="документы|офис" data-used="0" data-dup="1" data-req="0" data-star="0" data-surf="terminal desktop web phone"><div class="top"><b class="nm">pptx</b><span class="kd">скилл</span><button class="plg-badge" data-plugin="account">account</button><button class="dupb">копия ×2</button><span class="unused">ни разу</span><span class="org o-acct">из аккаунта</span><button class="lang" title="переключить язык этой карточки">EN ⇄ RU</button></div><p class="sum ru">Любая работа с презентациями .pptx и .potx.</p><p class="sum en">Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both.</p><div class="dup"><b>Основная копия.</b> Это же имя стоит ещё 1 раз (claude-api), но содержимое то же. Держись этой версии.</div><div class="run"><button class="cmd" data-copy="/pptx" title="скопировать">/pptx</button><span class="sfs"><span class="sf on">⌨ терминал</span><span class="sf on">▣ приложение</span><span class="sf on">◉ веб</span><span class="sf on">▢ телефон</span></span></div><div class="tags"><button class="tg" data-tag="документы">документы</button><button class="tg" data-tag="офис">офис</button></div><div class="tip"><b>Совет:</b> Аккаунтная версия — доступна везде, включая телефон.</div><details class="full"><summary>подробнее <span class="kb">28 КБ оригинала</span></summary><div class="dig ru"><b class="dh">Что делает:</b> создаёт и правит слайды, читает чужие презентации, работает с шаблонами и заметками докладчика.
 <b class="dh">Когда брать:</b> нужны слайды файлом.
 <b class="dh">На выходе:</b> .pptx.</div><div class="ru orig-hint">Полный оригинал на английском — кнопка <b>EN ⇄ RU</b> вверху карточки.</div><pre class="md en"><span class="hr"></span>
