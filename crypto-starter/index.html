@@ -94,18 +94,40 @@ body.g-ru .org .ru,body.g-fr .org .fr{display:inline}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size:12px;color:var(--mut)}
 @media(max-width:640px){.org{margin-left:0}.sfs{margin-left:0}h1{font-size:20px}}
 
+
+/* новые секции и таблицы / nouvelles sections et tableaux */
+.sect{margin:4px 0}
+.sect h2{font-size:17px;margin:24px 0 4px;letter-spacing:-.01em}
+.sect h3{font-size:14px;margin:16px 0 2px;color:var(--tx)}
+.sect .lead{font-size:13px;color:#c6c6cc;margin:6px 0 10px}
+table.t{width:100%;border-collapse:collapse;margin:8px 0 2px;font-size:12.5px}
+table.t th,table.t td{border:1px solid var(--bd);padding:7px 9px;vertical-align:top;text-align:left}
+table.t th{background:var(--pan);color:var(--tx);font-weight:600}
+table.t td.k{color:var(--blu);font-weight:600;white-space:nowrap}
+.note ol{margin:7px 0 0;padding-left:20px}
+.note ol li{margin:6px 0}
+.warnbox{margin-top:9px;font-size:12.5px;color:#efd9a0;background:#2a2410;border-left:2px solid var(--yel);border-radius:0 6px 6px 0;padding:7px 11px}
+.sect code,table.t code,.warnbox code{background:#101014;border-radius:3px;padding:1px 5px;color:#dfe6ff;font:11.5px ui-monospace,monospace}
+body.g-ru .note .ru,body.g-fr .note .fr,body.g-ru .lead .ru,body.g-fr .lead .fr{display:inline}
 </style></head><body class="g-ru">
 <div class="wrap"><header>
 <h1><span class="ru">🪙 Claude для крипты и поиска — старт</span><span class="fr">🪙 Claude pour la crypto et la recherche — kit de départ</span></h1>
 <div class="sub"><span class="ru">Небольшой набор для новичка, который работает только с телефона. Интересы: поиск в интернете и криптовалюта. Переключатель языка — справа: <b>русский / français</b>.</span><span class="fr">Un petit kit pour un débutant qui n'utilise que son téléphone. Centres d'intérêt : recherche web et cryptomonnaie. Le sélecteur de langue est à droite : <b>русский / français</b>.</span></div>
 <div class="stats">
-<div class="st"><b>14</b><span><span class="ru">инструментов</span><span class="fr">outils</span></span></div>
-<div class="st"><b>12</b><span><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span></span></div>
-<div class="st"><b>7</b><span><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span></span></div>
+<div class="st"><b>19</b><span><span class="ru">инструментов</span><span class="fr">outils</span></span></div>
+<div class="st"><b>17</b><span><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span></span></div>
+<div class="st"><b>12</b><span><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span></span></div>
 <div class="st"><b>3</b><span><span class="ru">🔍 поиск</span><span class="fr">🔍 recherche</span></span></div>
 <div class="st"><b>2</b><span><span class="ru">⚙️ для компа</span><span class="fr">⚙️ pour PC</span></span></div>
 </div>
 <div class="note warn"><b><span class="ru">Главное про телефон.</span><span class="fr">L'essentiel pour le mobile.</span></b> <span class="ru">На телефоне работают только инструменты <b>из аккаунта claude.ai</b> и <b>коннекторы</b>. Локальные скиллы из GitHub (дизайн-скиллы, brightdata и т.п.) нужен компьютер — они на телефоне не запускаются. Эта страница собрана так, чтобы почти всё работало прямо с телефона.</span><span class="fr">Sur mobile, seuls les outils <b>du compte claude.ai</b> et les <b>connecteurs</b> fonctionnent. Les skills locaux de GitHub (skills de design, brightdata, etc.) demandent un ordinateur — ils ne se lancent pas sur téléphone. Cette page est pensée pour que presque tout marche directement depuis le mobile.</span></div>
+<div class="note warn"><b><span class="ru">⚠️ Что где лежит — четыре частые ошибки</span><span class="fr">⚠️ Où va quoi — quatre erreurs fréquentes</span></b>
+<ol>
+<li><span class="ru"><b>Скиллы не кладут в файлы проекта.</b> Оттуда они не работают — Claude прочитает их как обычный текст. Ставить: Настройки → Возможности → включить «Создание и редактирование файлов» → Навыки → загрузить <b>каждый ZIP отдельно</b>, не папку целиком. Поставленные один раз, они работают во всех проектах.</span><span class="fr"><b>Les compétences ne se mettent pas dans les fichiers du projet.</b> Elles n'y fonctionnent pas — Claude les lira comme du texte ordinaire. Installation : Paramètres → Capacités → activer « Création et édition de fichiers » → Compétences → téléverser <b>chaque ZIP séparément</b>, pas le dossier entier. Installées une fois, elles fonctionnent dans tous les projets.</span></li>
+<li><span class="ru"><b>Инструкции вставляют текстом в поле</b>, а не загружают файлом. Файлом они становятся просто справочным текстом и теряют силу правил.</span><span class="fr"><b>Les instructions se collent comme texte dans le champ</b>, elles ne se téléversent pas. En fichier, elles deviennent un simple texte de référence et perdent leur force de règle.</span></li>
+<li><span class="ru"><b>Коннекторы подключают в настройках аккаунта</b>, не в проекте. Они общие для всех проектов, но в каждом чате их можно включать и выключать через «+».</span><span class="fr"><b>Les connecteurs se branchent dans les paramètres du compte</b>, pas dans le projet. Ils sont communs à tous les projets, mais s'activent ou se désactivent dans chaque conversation via « + ».</span></li>
+<li><span class="ru"><b>Дубликаты файлов опаснее их нехватки.</b> Два слегка разных документа об одном и том же дадут противоречивые ответы. Загружая обновление — удаляйте старую версию.</span><span class="fr"><b>Les doublons sont plus dangereux que les manques.</b> Deux documents légèrement différents sur le même sujet produiront des réponses contradictoires. En téléversant une mise à jour, supprimez l'ancienne version.</span></li>
+</ol></div>
 <div class="legend">
 <div class="lg"><b>📱</b> <span class="ru">работает на телефоне</span><span class="fr">fonctionne sur mobile</span></div>
 <div class="lg"><b>💻</b> <span class="ru">нужен компьютер</span><span class="fr">ordinateur requis</span></div>
@@ -113,6 +135,35 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 </div>
 </header></div>
 
+<div class="wrap"><div class="sect">
+<h2><span class="ru">📁 Проекты-папки: где всё это живёт</span><span class="fr">📁 Projets-dossiers : où tout cela vit</span></h2>
+<p class="lead"><span class="ru">Инструменты сами по себе ничего не помнят. Чтобы Claude работал с конкретным портфелем, нужен проект — папка со своими правилами, файлами и памятью. У каждого портфеля свой проект, и они не видят данных друг друга.</span><span class="fr">Les outils ne retiennent rien par eux-mêmes. Pour que Claude travaille sur un portefeuille précis, il faut un projet : un dossier avec ses propres règles, fichiers et mémoire. Chaque portefeuille a son projet, et ils ne voient pas les données l'un de l'autre.</span></p>
+<h3><span class="ru">Четыре слота проекта</span><span class="fr">Les quatre slots du projet</span></h3>
+<table class="t">
+<tr><th><span class="ru">Слот</span><span class="fr">Slot</span></th><th><span class="ru">Что это</span><span class="fr">Ce que c'est</span></th></tr>
+<tr><td class="k"><span class="ru">Инструкции</span><span class="fr">Instructions</span></td><td><span class="ru">Роль и правила. Вставляются <b>текстом в поле</b>, не загружаются файлом. Главный слот: без него остальное не работает.</span><span class="fr">Rôle et règles. À coller <b>comme texte dans le champ</b>, pas à téléverser comme fichier. Slot principal : sans lui, le reste ne fonctionne pas.</span></td></tr>
+<tr><td class="k"><span class="ru">Контекст</span><span class="fr">Contexte</span></td><td><span class="ru">Файлы проекта: позиции, стратегия, налоги, журнал. Около 10 файлов.</span><span class="fr">Fichiers du projet : positions, stratégie, fiscalité, journal. Une dizaine de fichiers.</span></td></tr>
+<tr><td class="k"><span class="ru">Память</span><span class="fr">Mémoire</span></td><td><span class="ru">Отдельная для каждого проекта. Общую память аккаунта лучше выключить, чтобы портфели не смешивались.</span><span class="fr">Propre à chaque projet. Mieux vaut désactiver la mémoire du compte pour que les portefeuilles ne se mélangent pas.</span></td></tr>
+<tr><td class="k"><span class="ru">Запланировано</span><span class="fr">Planifié</span></td><td><span class="ru">Повторяющиеся задачи. Например, разбор портфеля по понедельникам с уведомлением на телефон.</span><span class="fr">Tâches récurrentes. Par exemple, la revue du portefeuille le lundi avec notification sur le téléphone.</span></td></tr>
+</table>
+<h3><span class="ru">Что лежит в каждом проекте</span><span class="fr">Ce que contient chaque projet</span></h3>
+<table class="t">
+<tr><th><span class="ru">Файл</span><span class="fr">Fichier</span></th><th><span class="ru">Назначение</span><span class="fr">Rôle</span></th></tr>
+<tr><td class="k"><code>etat_actuel_*.md</code></td><td><span class="ru"><b>Главный файл состояния</b> с датой. При противоречии верить ему. Если старше 14 дней — пересчитать.</span><span class="fr"><b>Fichier d'état principal</b>, daté. En cas de contradiction, c'est lui qui fait foi. Au-delà de 14 jours, recalculer.</span></td></tr>
+<tr><td class="k"><code>investment_policy.md</code></td><td><span class="ru">Правила: целевые доли, лимиты, частота ребалансировки.</span><span class="fr">Règles : pondérations cibles, limites, fréquence de rééquilibrage.</span></td></tr>
+<tr><td class="k"><code>positions.csv</code></td><td><span class="ru">Позиции: количество, цена входа, площадка, корзина.</span><span class="fr">Positions : quantité, prix d'entrée, plateforme, poche.</span></td></tr>
+<tr><td class="k"><code>trade_journal.csv</code></td><td><span class="ru">Все сделки. Для продаж за евро обязательна стоимость всего портфеля на момент продажи — без неё не заполнить форму 2086.</span><span class="fr">Toutes les transactions. Pour les ventes en euros, la valeur totale du portefeuille au moment de la cession est obligatoire — sans elle, impossible de remplir le 2086.</span></td></tr>
+<tr><td class="k"><code>orders_actifs.csv</code></td><td><span class="ru">Активные лимитные ордера и их расстояние от рынка.</span><span class="fr">Ordres limites actifs et leur distance au marché.</span></td></tr>
+<tr><td class="k"><code>fiscalite_fr_2026.md</code></td><td><span class="ru">Французские налоговые правила.</span><span class="fr">Règles fiscales françaises.</span></td></tr>
+<tr><td class="k"><code>comptes_plateformes.md</code></td><td><span class="ru">Список площадок для формы 3916-bis. Без номеров счетов.</span><span class="fr">Liste des plateformes pour le formulaire 3916-bis. Sans numéros de compte.</span></td></tr>
+<tr><td class="k"><code>watchlist.md</code></td><td><span class="ru">Монеты на наблюдении.</span><span class="fr">Tokens sous surveillance.</span></td></tr>
+<tr><td class="k"><span class="ru">документ стратегии</span><span class="fr">document de stratégie</span></td><td><span class="ru">Фазы, цели, периметр конкретного портфеля.</span><span class="fr">Phases, objectifs, périmètre du portefeuille concerné.</span></td></tr>
+<tr><td class="k"><span class="ru">расшифровка диалогов</span><span class="fr">transcription des dialogues</span></td><td><span class="ru">История решений, чтобы не повторять разбор заново.</span><span class="fr">Historique des décisions, pour ne pas refaire l'analyse.</span></td></tr>
+</table>
+<h3><span class="ru">Два портфеля — два проекта</span><span class="fr">Deux portefeuilles — deux projets</span></h3>
+<p class="lead"><span class="ru">Проекты разделены, но налог во Франции считается на всё налоговое домохозяйство сразу. Поэтому каждый проект должен знать о существовании второго: порог 305 € общий, а в формуле плюс-валю нужна стоимость <b>всей</b> крипты. В <code>investment_policy.md</code> каждого проекта есть строка «стоимость второго портфеля» — её обновляют раз в месяц и перед любой продажей за евро.</span><span class="fr">Les projets sont séparés, mais en France l'impôt se calcule sur l'ensemble du foyer fiscal. Chaque projet doit donc connaître l'existence de l'autre : le seuil de 305 € est commun, et la formule de plus-value exige la valeur de <b>toute</b> la crypto. Le fichier <code>investment_policy.md</code> de chaque projet contient une ligne « valeur du second portefeuille » — à mettre à jour une fois par mois et avant toute vente en euros.</span></p>
+</div></div>
+<div class="wrap"><div class="note warn"><b><span class="ru">🔌 Чего коннекторы не умеют</span><span class="fr">🔌 Ce que les connecteurs ne savent pas faire</span></b> <span class="ru">В каталоге Claude <b>нет коннектора ни к одной бирже</b> с вашими счетами — ни к OKX, ни к другим. Значит, балансы автоматически не подтянуть: количества Claude берёт только из файлов проекта или из скриншотов, которые вы присылаете. Поэтому файл состояния и нужно обновлять руками. И отдельно: биржевые коннекторы с правом торговли подключать не стоит в принципе — Claude нужен для анализа, а не для исполнения сделок. Если какой-то коннектор всё же подключён, инструменты записи и удаления стоит перевести в «Заблокировано» или «Требует подтверждения».</span><span class="fr">Le catalogue Claude <b>ne contient aucun connecteur vers une plateforme d'échange</b> où se trouvent vos comptes — ni OKX, ni les autres. Les soldes ne peuvent donc pas être récupérés automatiquement : Claude ne prend les quantités que dans les fichiers du projet ou dans les captures d'écran que vous envoyez. C'est pourquoi le fichier d'état se met à jour à la main. Par ailleurs : mieux vaut ne jamais brancher un connecteur d'échange doté du droit de négocier — Claude sert à l'analyse, pas à l'exécution des ordres. Si un tel connecteur est malgré tout branché, placez ses outils d'écriture et de suppression sur « Bloqué » ou « Demande une validation ».</span></div></div>
 <div class="bar"><div class="wrap">
 <input type="search" id="q" placeholder="Поиск по названию, описанию или тегу… / Rechercher…" autocomplete="off">
 <div class="ctl">
@@ -123,13 +174,13 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <button class="ch" id="reset"><span class="ru">сбросить</span><span class="fr">réinitialiser</span></button>
 </div>
 <div class="chips" id="chips">
-<span class="ch act" data-f="all"><span class="ru">всё</span><span class="fr">tout</span><span class="n">14</span></span>
-<span class="ch" data-f="surf:phone"><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span><span class="n">12</span></span>
+<span class="ch act" data-f="all"><span class="ru">всё</span><span class="fr">tout</span><span class="n">19</span></span>
+<span class="ch" data-f="surf:phone"><span class="ru">📱 на телефоне</span><span class="fr">📱 sur mobile</span><span class="n">17</span></span>
 <span class="ch" data-f="sec:search"><span class="ru">🔍 поиск</span><span class="fr">🔍 recherche</span><span class="n">3</span></span>
-<span class="ch" data-f="sec:crypto"><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span><span class="n">7</span></span>
+<span class="ch" data-f="sec:crypto"><span class="ru">🪙 крипта</span><span class="fr">🪙 crypto</span><span class="n">12</span></span>
 <span class="ch" data-f="sec:base"><span class="ru">🧰 база</span><span class="fr">🧰 bases</span><span class="n">2</span></span>
 <span class="ch" data-f="sec:later"><span class="ru">⚙️ нужен компьютер</span><span class="fr">⚙️ ordinateur</span><span class="n">2</span></span>
-</div><div class="found" id="found"></div>
+<span class="ch" data-f="tag:проекты"><span class="ru">📁 проекты</span><span class="fr">📁 projets</span><span class="n">2</span></span><span class="ch" data-f="tag:налоги"><span class="ru">🇫🇷 налоги</span><span class="fr">🇫🇷 fiscalité</span><span class="n">2</span></span><span class="ch" data-f="tag:портфель"><span class="ru">📊 портфель</span><span class="fr">📊 portefeuille</span><span class="n">2</span></span></div><div class="found" id="found"></div>
 </div></div>
 
 <div class="wrap"><div id="list">
@@ -193,6 +244,8 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="цены">цены</button><button class="tg" data-tag="коннектор">коннектор</button></div>
 <div class="tip ru"><b>Совет:</b> Официальный коннектор CoinGecko. Включается в настройках коннекторов claude.ai — и тогда работает прямо на телефоне. Самое полезное дополнение для крипты.</div>
 <div class="tip fr"><b>Astuce :</b> Connecteur officiel CoinGecko. S'active dans les réglages de connecteurs claude.ai — et fonctionne alors directement sur mobile. Le meilleur ajout pour la crypto.</div>
+<div class="warnbox ru">⚠️ Коннектор возвращает цены <b>в долларах</b>, даже если запросить евро — параметр валюты игнорируется. Чтобы получить евро, курс EUR/USD нужно узнать отдельно (веб-поиском) и пересчитать вручную. Иначе разница около 11 % уйдёт в расчёты незаметно.</div>
+<div class="warnbox fr">⚠️ Le connecteur renvoie les cours <b>en dollars</b>, même si l'on demande des euros — le paramètre de devise est ignoré. Pour obtenir des euros, il faut relever le taux EUR/USD séparément (recherche web) et convertir à la main. Sinon un écart d'environ 11 % se glisse dans les calculs sans qu'on le voie.</div>
 <details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
 <div class="dig ru"><b class="dh">Что делает:</b> берёт актуальные цены BTC/ETH/SOL и тысяч монет, сравнивает активы, показывает трендовые.
 <b class="dh">Когда брать:</b> «какая цена…», «сравни…», «что сейчас в тренде».
@@ -307,6 +360,92 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 <b class="dh">Résultat :</b> un résumé ou un nouveau PDF.</div>
 </details></article>
 
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-tags="портфель|отчёт|проекты|автоматизация|крипта" data-s="weekly-portfolio-review еженедельный разбор портфеля revue hebdomadaire portefeuille отчёт rapport автоматизация налоги coingecko проекты крипта fiscalité">
+<div class="top"><b class="nm">weekly-portfolio-review</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Еженедельный разбор портфеля: доли, отклонения от целей, новости, налоговая сводка по Франции.</p>
+<p class="sum fr">Revue hebdomadaire du portefeuille : répartition, écarts aux cibles, actualités, point fiscal français.</p>
+<div class="run"><span class="nocmd"><span class="ru">скилл · ставится из настроек (ZIP)</span><span class="fr">compétence · installée via les réglages (ZIP)</span></span><span class="sfs"><span class="sf on" title="работает на телефоне / sur mobile">📱</span><span class="sf on" title="установка с компьютера / installation sur ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="портфель">портфель</button><button class="tg" data-tag="отчёт">отчёт</button><button class="tg" data-tag="проекты">проекты</button><button class="tg" data-tag="автоматизация">автоматизация</button></div>
+<div class="tip ru"><b>Совет:</b> Скилл даёт варианты, а не приказы. Решение остаётся за вами.</div>
+<div class="tip fr"><b>Astuce :</b> La compétence propose des options, jamais des ordres. La décision reste la vôtre.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> читает файлы проекта (позиции, правила, журнал сделок), берёт актуальные цены через CoinGecko, считает доли и отклонения, проверяет лимиты, сверяет накопленные продажи с порогом 305 €, собирает новости недели.
+<b class="dh">Когда брать:</b> по понедельникам или по запросу «сделай недельный обзор». Запускается сам, если настроена запланированная задача.
+<b class="dh">На выходе:</b> итог в 3 строки, таблица «корзина / доля / цель / отклонение», нарушения правил, варианты действий с налоговой оценкой, уровень уверенности, «что проверить самому», источники с временем.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> lit les fichiers du projet (positions, règles, journal des transactions), récupère les cours via CoinGecko, calcule les pondérations et les écarts, vérifie les limites, compare les cessions cumulées au seuil de 305 €, rassemble les actualités de la semaine.
+<b class="dh">Quand l'utiliser :</b> le lundi ou sur demande « fais la revue hebdomadaire ». Se déclenche seul si une tâche planifiée est configurée.
+<b class="dh">Résultat :</b> synthèse en 3 lignes, tableau « poche / part / cible / écart », règles enfreintes, options d'action avec estimation fiscale, niveau de confiance, « à vérifier soi-même », sources horodatées.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-tags="портфель|налоги|проекты|франция|крипта" data-s="rebalance-check-fr проверка ребалансировки contrôle rééquilibrage france налоги портфель цели 305 крипта проекты fiscalité">
+<div class="top"><b class="nm">rebalance-check-fr</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Сравнивает текущие доли с целевыми и предлагает способы вернуть баланс — начиная с тех, что не создают налога.</p>
+<p class="sum fr">Compare les pondérations réelles aux cibles et propose des moyens de rétablir l'équilibre, en commençant par ceux qui ne déclenchent pas d'impôt.</p>
+<div class="run"><span class="nocmd"><span class="ru">скилл · ставится из настроек (ZIP)</span><span class="fr">compétence · installée via les réglages (ZIP)</span></span><span class="sfs"><span class="sf on" title="работает на телефоне / sur mobile">📱</span><span class="sf on" title="установка с компьютера / installation sur ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="портфель">портфель</button><button class="tg" data-tag="налоги">налоги</button><button class="tg" data-tag="Франция">Франция</button><button class="tg" data-tag="проекты">проекты</button></div>
+<div class="tip ru"><b>Совет:</b> Во Франции обмен крипты на крипту налога не создаёт — это главный инструмент бесплатной ребалансировки.</div>
+<div class="tip fr"><b>Astuce :</b> En France, l'échange crypto contre crypto ne déclenche pas d'impôt — c'est le principal levier de rééquilibrage gratuit.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> считает отклонения, строит до трёх вариантов возврата к целям в порядке налоговой выгодности: сначала обмены крипта↔крипта и направление новых взносов, затем продажи в пределах порога 305 €, и только потом полная продажа за евро с оценкой налога.
+<b class="dh">Когда брать:</b> в начале квартала или когда доля вышла за допуск.
+<b class="dh">На выходе:</b> таблица отклонений, варианты A/B/C, налоговая сводка, остаточное отклонение по каждому варианту.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> calcule les écarts et construit jusqu'à trois scénarios de retour aux cibles, classés par coût fiscal : d'abord les échanges crypto-crypto et l'orientation des nouveaux versements, puis les cessions sous le seuil de 305 €, et enfin la vente en euros avec estimation de l'impôt.
+<b class="dh">Quand l'utiliser :</b> en début de trimestre ou quand une pondération sort de sa fourchette.
+<b class="dh">Résultat :</b> tableau des écarts, scénarios A/B/C, synthèse fiscale, écart résiduel pour chaque scénario.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-tags="налоги|франция|декларация|крипта" data-s="fr-crypto-tax налог на крипту fiscalité crypto france декларация 2086 2042-c 3916-bis плюс-валю 150 vh bis налоги крипта">
+<div class="top"><b class="nm">fr-crypto-tax</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Считает плюс-валю по формуле глобального портфеля и готовит данные для форм 2086, 2042-C и 3916-bis.</p>
+<p class="sum fr">Calcule la plus-value selon la méthode du portefeuille global et prépare les données des formulaires 2086, 2042-C et 3916-bis.</p>
+<div class="run"><span class="nocmd"><span class="ru">скилл · ставится из настроек (ZIP)</span><span class="fr">compétence · installée via les réglages (ZIP)</span></span><span class="sfs"><span class="sf on" title="работает на телефоне / sur mobile">📱</span><span class="sf on" title="установка с компьютера / installation sur ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="налоги">налоги</button><button class="tg" data-tag="Франция">Франция</button><button class="tg" data-tag="декларация">декларация</button><button class="tg" data-tag="крипта">крипта</button></div>
+<div class="tip ru"><b>Совет:</b> Это оценка, а не налоговая консультация. Перед крупной продажей — к expert-comptable.</div>
+<div class="tip fr"><b>Astuce :</b> Il s'agit d'une estimation, pas d'un conseil fiscal. Avant une vente importante, consultez un expert-comptable.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> применяет статью 150 VH bis CGI — расчёт идёт не по лотам и не по FIFO, а по формуле, где нужна стоимость всего криптопортфеля в момент продажи. Считает кодом, а не в уме. Учитывает все ваши портфели сразу, потому что налог считается на налоговое домохозяйство целиком.
+<b class="dh">Когда брать:</b> перед продажей за евро, весной при декларации, или на вопрос «сколько я должен».
+<b class="dh">На выходе:</b> таблица по каждой продаже, чистая плюс-валю года, налог по ставке 31,4 %, сравнение с барем, данные по каждой форме.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> applique l'article 150 VH bis du CGI — le calcul ne se fait ni par lots ni en FIFO, mais selon une formule qui exige la valeur de tout le portefeuille crypto au moment de la cession. Calcule par code, pas de tête. Prend en compte tous vos portefeuilles à la fois, l'impôt étant établi au niveau du foyer fiscal.
+<b class="dh">Quand l'utiliser :</b> avant une vente en euros, au printemps lors de la déclaration, ou sur la question « combien je dois ».
+<b class="dh">Résultat :</b> tableau par cession, plus-value nette annuelle, impôt au taux de 31,4 %, comparaison avec le barème, données pour chaque formulaire.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-tags="анализ|риски|токеномика|крипта" data-s="coin-due-diligence проверка монеты перед покупкой due diligence token токеномика разлоки держатели ликвидность аудиты mica анализ риски крипта">
+<div class="top"><b class="nm">coin-due-diligence</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Разбирает токен по чек-листу: токеномика, разлоки, держатели, ликвидность, аудиты, регуляторика ЕС.</p>
+<p class="sum fr">Analyse un token selon une grille : tokenomics, déverrouillages, détenteurs, liquidité, audits, cadre réglementaire européen.</p>
+<div class="run"><span class="nocmd"><span class="ru">скилл · ставится из настроек (ZIP)</span><span class="fr">compétence · installée via les réglages (ZIP)</span></span><span class="sfs"><span class="sf on" title="работает на телефоне / sur mobile">📱</span><span class="sf on" title="установка с компьютера / installation sur ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="анализ">анализ</button><button class="tg" data-tag="риски">риски</button><button class="tg" data-tag="токеномика">токеномика</button><button class="tg" data-tag="крипта">крипта</button></div>
+<div class="tip ru"><b>Совет:</b> Скилл не говорит «покупай». Он показывает, вписывается ли монета в ваши правила.</div>
+<div class="tip fr"><b>Astuce :</b> La compétence ne dit jamais « achète ». Elle montre si le token respecte vos règles.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> собирает данные через CoinGecko и Etherscan, проверяет расписание разлоков на год вперёд, концентрацию у топ-10 адресов, права владельца контракта, наличие лицензии MiCA у площадок, сравнивает с конкурентами.
+<b class="dh">Когда брать:</b> перед добавлением монеты из watchlist в портфель.
+<b class="dh">На выходе:</b> таблица метрик, явный список красных флагов, аргументы за и против, соответствие вашим лимитам.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> collecte les données via CoinGecko et Etherscan, vérifie le calendrier des déverrouillages sur un an, la concentration chez les dix premières adresses, les droits du propriétaire du contrat, l'agrément MiCA des plateformes, et compare aux concurrents.
+<b class="dh">Quand l'utiliser :</b> avant de faire passer un token de la watchlist au portefeuille.
+<b class="dh">Résultat :</b> tableau de métriques, liste explicite des signaux d'alerte, arguments pour et contre, conformité à vos limites.</div>
+</details></article>
+
+<article class="e" data-sec="crypto" data-surf="phone desktop" data-tags="блокчейн|контракты|кошельки|крипта" data-s="etherscan коннектор connecteur блокчейн blockchain контракты contrats кошельки wallets evm ens газ gas abi крипта">
+<div class="top"><b class="nm">Etherscan</b><span class="kd"><span class="ru">коннектор</span><span class="fr">connecteur</span></span><span class="org o-conn"><span class="ru">из интернета</span><span class="fr">du web</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
+<p class="sum ru">Читает блокчейн: кошельки, токены, транзакции, контракты и газ в более чем 60 EVM-сетях.</p>
+<p class="sum fr">Lit la blockchain : portefeuilles, tokens, transactions, contrats et gas sur plus de 60 réseaux EVM.</p>
+<div class="run"><span class="nocmd"><span class="ru">коннектор · без авторизации</span><span class="fr">connecteur · sans authentification</span></span><span class="sfs"><span class="sf on" title="работает на телефоне / sur mobile">📱</span><span class="sf on" title="компьютер / ordinateur">💻</span></span></div>
+<div class="tags"><button class="tg" data-tag="крипта">крипта</button><button class="tg" data-tag="блокчейн">блокчейн</button><button class="tg" data-tag="контракты">контракты</button><button class="tg" data-tag="кошельки">кошельки</button></div>
+<div class="tip ru"><b>Совет:</b> Подключается без авторизации — ни логина, ни API-ключа. Настройки → Коннекторы → найти Etherscan → Подключить.</div>
+<div class="tip fr"><b>Astuce :</b> Se connecte sans authentification — ni identifiant ni clé API. Paramètres → Connecteurs → chercher Etherscan → Connecter.</div>
+<details class="full"><summary><span class="ru">подробнее</span><span class="fr">en savoir plus</span></summary>
+<div class="dig ru"><b class="dh">Что делает:</b> проверяет исходный код и ABI контракта, кто его создал, балансы и переводы токенов, статус транзакций, цену газа, разрешает ENS-имена. Только чтение — подписать или отправить транзакцию не может.
+<b class="dh">Когда брать:</b> при проверке нового токена, перед покупкой малоизвестной монеты, при разборе подозрительного контракта.
+<b class="dh">На выходе:</b> данные контракта и адресов напрямую из блокчейна, без посредников.</div>
+<div class="dig fr"><b class="dh">Ce que ça fait :</b> vérifie le code source et l'ABI d'un contrat, son créateur, les soldes et transferts de tokens, le statut des transactions, le prix du gas, résout les noms ENS. Lecture seule — ne peut ni signer ni diffuser de transaction.
+<b class="dh">Quand l'utiliser :</b> pour vérifier un nouveau token, avant d'acheter une monnaie peu connue, pour analyser un contrat suspect.
+<b class="dh">Résultat :</b> données de contrat et d'adresse directement issues de la blockchain, sans intermédiaire.</div>
+<div class="meta">📎 <span class="ru">каталог коннекторов Claude → Настройки → Коннекторы</span><span class="fr">catalogue des connecteurs Claude → Paramètres → Connecteurs</span></div>
+</details></article>
+
 <article class="e" data-sec="base" data-surf="phone desktop" data-s="docs документы documents заметки notes ресёрч">
 <div class="top"><b class="nm">docs</b><span class="kd"><span class="ru">скилл</span><span class="fr">skill</span></span><span class="org o-acct"><span class="ru">аккаунт</span><span class="fr">compte</span></span><button class="lang" title="RU ⇄ FR">RU ⇄ FR</button></div>
 <p class="sum ru">Редактируемые документы — вести заметки и ресёрч прямо в Claude.</p>
@@ -379,6 +518,20 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size
 
 </div></div>
 
+<div class="wrap"><div class="sect">
+<h2><span class="ru">🇫🇷 Крипта и налоги во Франции — коротко</span><span class="fr">🇫🇷 Crypto et fiscalité en France — l'essentiel</span></h2>
+<table class="t">
+<tr><td><span class="ru">Ставка 2026: <b>31,4 %</b> (12,8 % налог + 18,6 % соцвзносы). До 2025 было 30 %.</span><span class="fr">Taux 2026 : <b>31,4 %</b> (12,8 % d'impôt + 18,6 % de prélèvements sociaux). Jusqu'en 2025 : 30 %.</span></td></tr>
+<tr><td><span class="ru">Облагается <b>только продажа за фиат</b> или оплата криптой. Обмен крипта↔крипта налога не создаёт.</span><span class="fr">Seule la <b>vente contre monnaie fiat</b> ou le paiement en crypto est imposable. L'échange crypto-crypto ne déclenche rien.</span></td></tr>
+<tr><td><span class="ru">Освобождение: сумма <b>всех продаж</b> за год до <b>305 €</b>. Считается не прибыль, а оборот.</span><span class="fr">Exonération : total des <b>cessions</b> de l'année jusqu'à <b>305 €</b>. On compte le prix de cession, pas le gain.</span></td></tr>
+<tr><td><span class="ru">Расчёт — по формуле глобального портфеля, <b>не FIFO и не по лотам</b>. Нужна стоимость всей крипты на момент продажи.</span><span class="fr">Calcul selon la méthode du portefeuille global, <b>ni FIFO ni par lots</b>. Exige la valeur de toute la crypto au moment de la cession.</span></td></tr>
+<tr><td><span class="ru">Льготы за срок владения <b>нет</b>.</span><span class="fr"><b>Aucun</b> abattement pour durée de détention.</span></td></tr>
+<tr><td><span class="ru">Убытки зачитываются <b>только внутри года</b>, переноса нет.</span><span class="fr">Les moins-values s'imputent <b>uniquement dans l'année</b>, sans report.</span></td></tr>
+<tr><td><span class="ru">Формы: <b>2086</b> (детали продаж), <b>2042-C</b> (итог, графы 3AN/3BN), <b>3916-bis</b> (каждый иностранный счёт).</span><span class="fr">Formulaires : <b>2086</b> (détail des cessions), <b>2042-C</b> (report, cases 3AN/3BN), <b>3916-bis</b> (chaque compte étranger).</span></td></tr>
+<tr><td><span class="ru">Штраф за незадекларированный иностранный счёт: <b>750 €</b>, при остатке свыше 50 000 € — <b>1 500 €</b>.</span><span class="fr">Amende pour compte étranger non déclaré : <b>750 €</b>, et <b>1 500 €</b> si le solde dépasse 50 000 €.</span></td></tr>
+</table>
+<p class="lead"><span class="ru"><b>Дисклеймер:</b> это памятка, а не налоговая консультация. Перед крупной продажей — к expert-comptable или на impots.gouv.fr.</span><span class="fr"><b>Avertissement :</b> ceci est un aide-mémoire, pas un conseil fiscal. Avant une vente importante, consultez un expert-comptable ou impots.gouv.fr.</span></p>
+</div></div>
 <div class="wrap"><footer>
 <span class="ru">Старт-набор для друга: только то, что реально работает с телефона (аккаунт claude.ai + коннекторы), плюс пара сильных штук «на будущее» для компьютера. Описания и переводы — от Claude. Звёзды и свежесть сторонних инструментов проверяй в их репозиториях.</span>
 <span class="fr">Kit de départ pour un ami : uniquement ce qui marche vraiment depuis le mobile (compte claude.ai + connecteurs), plus deux outils costauds « pour plus tard » sur ordinateur. Descriptions et traductions par Claude. Vérifie la fiabilité des outils tiers dans leurs dépôts.</span>
@@ -392,7 +545,7 @@ var SECN={search:{ru:'🔍 Поиск и ресёрч',fr:'🔍 Recherche web'},
 var SURFN={phone:{ru:'📱 Работает на телефоне',fr:'📱 Fonctionne sur mobile'},desktop:{ru:'💻 Нужен компьютер',fr:'💻 Ordinateur requis'}};
 var ORDER={search:1,crypto:2,base:3,later:4,phone:1,desktop:2};
 var filt='all',groupBy='sec';
-cards.forEach(function(c){c._sec=c.getAttribute('data-sec');c._sf=(c.getAttribute('data-surf')||'').split(' ');c._s=(c.getAttribute('data-s')||'').toLowerCase();});
+cards.forEach(function(c){c._sec=c.getAttribute('data-sec');c._sf=(c.getAttribute('data-surf')||'').split(' ');c._s=(c.getAttribute('data-s')||'').toLowerCase();c._tags=(c.getAttribute('data-tags')||'').toLowerCase().split('|');});
 function lang(){return document.body.classList.contains('g-fr')?'fr':'ru';}
 function pass(c){
  var t=q.value.trim().toLowerCase();
@@ -401,6 +554,7 @@ function pass(c){
  var p=filt.split(':'),k=p[0],v=p.slice(1).join(':');
  if(k==='surf')return c._sf.indexOf(v)>=0;
  if(k==='sec')return c._sec===v;
+ if(k==='tag')return c._tags.indexOf(v)>=0;
  return true;
 }
 function render(){
